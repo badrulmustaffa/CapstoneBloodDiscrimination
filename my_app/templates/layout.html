@@ -8,6 +8,18 @@
     {% block javascript %}{% endblock %}
     {# Add to the head section #}
     <title>{{ title }}</title>
+
+    <style>
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: lightgray;
+    color: white;
+    text-align: center;
+    }
+    </style>
 </head>
 <body>
 
@@ -33,6 +45,16 @@
         {% block content %}{% endblock %}
     </div>
 </main>
+
+<div class="footer">
+    <footer>
+        <br>
+        <p class="copyright">Capstone Blood Descriminacion © 2021</p>
+        <a href="https://www.flaticon.com/free-icons/blood-test" title="blood test icons">Blood test web logo created by kosonicon - Flaticon</a>
+        <br>
+    </footer>
+
+</div>
 
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
 
