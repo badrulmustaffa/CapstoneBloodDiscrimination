@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% set title = 'Forum' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <h1>All posts</h1>
+    <br>
+    <br>
+
+        <ul>
+                {% for timestamp, reason, comment in comments.items() %}
+                <li>Date: {{ timestamp }}</li>
+                <li>Reason: {{ reason }}</li>
+                <li>Comment: {{ comment }}</li>
+
+                {% endfor %}
+        </ul>
+
+{% endblock %}

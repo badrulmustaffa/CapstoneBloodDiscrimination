@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% set title = 'Profile Display' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    {% for result, url in profiles %}
+        <div class="card" style="width: 50rem;">
+            <img src="{{ url }}" alt="User profile photo" height="300" width="300">
+            <div class="card-body">
+                <h4 class="card-title">Username: {{ result.username }}</h4>
+                <p class="card-text"> Bio: {{ result.bio }}</p>
+
+                <div>
+
+                    <table>
+                        <h5>History:</h5>
+                        <th>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Mean</th>
+                                <th>From</th>
+                                <th>To</th>
+                            </tr>
+                        </th>
+
+                        {% for user_id in history %}
+                            <tr>
+                                <td>
+                                    {{ user_id.time }}
+                                </td>
+                                <td>
+                                    {{ user_id.mean }}
+                                </td>
+                                <td>
+                                    {{ user_id.start }}
+                                </td>
+                                <td>
+                                    {{ user_id.end }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+
+                {% if result.username == current_user.username %}
+                    <form action="{{ url_for("community_bp.update_profile") }}">
+                        <button type="submit" class="btn btn-primary">Edit profile</button>
+                    </form>
+                {% endif %}
+                <hr>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

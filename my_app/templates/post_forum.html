@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% set title = 'Forum' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <h2>Post</h2>
+    <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5>{{ username }}</h5>
+            <img class="card-img-top" src="{{ url }}" alt="User profile photo" width="30" height="30">
+        </div>
+    </div>
+    <div>
+            <form class="form-inline" method="POST" action="{{ url_for('forum_bp.posts') }}">
+
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.reason, class="form-control") }}
+                    {{ render_field(form.content, class="form-control") }}
+
+                </dl>
+                <br>
+                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="reset" class="btn btn-primary">Cancel</button>
+            </form>
+    </div>
+{% endblock %}

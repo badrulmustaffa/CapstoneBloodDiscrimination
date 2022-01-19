@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% set title = 'Add post' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <!-- Page Header -->
+    <header class="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading">
+                        <h1>Add Post</h1>
+                        <span class="subheading">You can create a blog post here.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <form name="addForm" id="addForm" method="POST" action="{{ url_for('blog_bp.add') }}" enctype="multipart/form-data">
+                    {{ form.csrf_token }}
+                    <dl>
+                        {{ render_field(form.title, class="form-control") }}
+                        {{ render_field(form.subtitle, class="form-control") }}
+                        {{ render_field(form.content, class="form-control") }}
+                    </dl>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <br>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}

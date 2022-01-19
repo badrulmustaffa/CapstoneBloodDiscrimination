@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% set title = 'Profile' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <h2>{{ message }}</h2><br>
+    <h5>Username: {{ username }}</h5>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <dl>
+            {{ render_field(form.bio, class="form-control") }}
+            {{ render_field(form.photo, class="custom-file", id="input_file") }}
+        </dl><br>
+        <button type="submit" class="btn btn-primary">Save</button>
+        {% if message == 'Profile update' %}
+            <form action="{{ url_for("community_bp.display_profiles") }}">
+                <button type="submit" class="btn btn-primary">Cancel</button>
+            </form>
+        {% endif %}
+    </form>
+
+{% endblock %}

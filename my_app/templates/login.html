@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% set title = 'Login' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <h2>Login</h2>
+    <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                {{ form.csrf_token }}
+                <dl>
+                    {{ render_field(form.username, class="form-control") }}
+                    {{ render_field(form.password, class="form-control") }}
+                    {{ render_field(form.remember, class="form-check-input") }}
+                </dl>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+{#{% block content %}#}
+{#    <h2>Please sign in to use the service</h2>#}
+{#    <form method="POST" action="{{ url_for('auth.login') }}">#}
+{#        {{ form.csrf_token }}#}
+{#        {{ form.username.label }} {{ form.username() }} <br>#}
+{#        {{ form.password.label }} {{ form.password() }} <br>#}
+{#        {{ form.remember.label }} {{ form.remember() }} <br>#}
+{#        <br>#}
+{#        <input type="submit" value="Login">#}
+{#    </form>#}
+{#{% endblock %}#}
+
+{#Nanti add function balik#}

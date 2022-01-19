@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% set title = 'Sign up' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <h2>Sign up form</h2>
+    <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('auth.signup') }}" novalidate>
+                {{ form.csrf_token }}
+                <dl>
+                    {{ render_field(form.username, class="form-control") }}
+                    {{ render_field(form.email, class="form-control") }}
+                    {{ render_field(form.password, class="form-control") }}
+                    {{ render_field(form.password_repeat, class="form-control") }}
+                </dl>
+                <button id="submit" type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+{#{% block content %}#}
+{#    <h2>Please sign up to use the service</h2>#}
+{#    <form method="POST" action="{{ url_for('auth.signup') }}">#}
+{#        {{ form.csrf_token }}#}
+{#        {{ form.username.label }} {{ form.username() }} <br>#}
+{#        {{ form.email.label }} {{ form.email() }} <br>#}
+{#        {{ form.password.label }} {{ form.password() }} <br>#}
+{#        {{ form.password_repeat.label }} {{ form.password_repeat() }} <br>#}
+{#        <input type="submit" value="Sign up">#}
+{#    </form>#}
+{##}
+{#     Display the form validation errors#}
+{#    {% for field, errors in form.errors.items() %}#}
+{#        <div class="alert alert-error">#}
+{#            {{ form[field].label }}: {{ ', '.join(errors) }}#}
+{#        </div>#}
+{#    {% endfor %}#}
+{##}
+{#{% endblock %}#}
+
+
+{#To add styling using bootstrap, check Lecture 7.5#}

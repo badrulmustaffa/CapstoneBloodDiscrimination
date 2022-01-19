@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% set title = 'Forum' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+
+<h3>Forum</h3>{{category_forums}}
+{% for category,forum_threads in category_forums_threads.items() %}
+	<h2> {{category.name}} </h2>
+{% endfor %}
+	<!-- {% for category,forum_threads in category_forums_threads.items() %}
+		<ul>
+			{{category.name}}
+			<ul>
+				{% for forum,threads in forum_threads.items() %}
+					<li>{{forum.name}} - {{threads|length}}</li>
+				{% else %}
+					<li>Nothing to show...</li>
+				{% endfor %}
+			</ul>
+		</ul>
+
+	{% endfor %} -->
+
+
+<!--
+    <h2>Forum</h2>
+    <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5>{{ username }}</h5>
+            <img class="card-img-top" src="{{ url }}" alt="User profile photo" width="30" height="30">
+        </div>
+    </div>
+-->
+{% endblock %}

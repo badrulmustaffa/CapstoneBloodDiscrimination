@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% set title = 'Add post' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+<!-- Page Header -->
+<header class="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>{{ post.title }}</h1>
+                    <span class="subheading">{{ post.subtitle }}</span>
+                    <span class="meta">Posted by
+                {{ post.author }}
+                on {{ post.date_posted.strftime('%B %d, %Y') }}
+              </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {{ post.content|safe }}
+            </div>
+        </div>
+    </div>
+</article>
+<hr>
+
+{% endblock %}
