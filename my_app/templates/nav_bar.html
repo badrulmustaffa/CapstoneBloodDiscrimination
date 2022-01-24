@@ -42,13 +42,15 @@
                     </li>
                 {% endif %}
             </ul>
-            <form class="d-flex" action="{{ url_for("community_bp.display_profiles") }}" method="post">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                <input class="form-control me-2" type="search" placeholder="Type in username"
-                       aria-label="Type in username"
-                       name="search_term">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <div style="float: right">
+                <form class="d-flex" action="{{ url_for("community_bp.display_profiles") }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input class="form-control me-2" type="search" placeholder="Type in username"
+                           aria-label="Type in username"
+                           name="search_term">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
             <br>
         </div>
     </div>

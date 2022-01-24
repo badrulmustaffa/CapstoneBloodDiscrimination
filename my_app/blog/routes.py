@@ -12,6 +12,7 @@ blog_bp = Blueprint('blog_bp', __name__, url_prefix='/blog')
 
 
 @blog_bp.route('/')
+@login_required
 def index():
     posts = Blogpost.query.order_by(Blogpost.date_posted.desc()).all()
 

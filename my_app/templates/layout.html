@@ -11,14 +11,22 @@
 
     <style>
     .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: lightgray;
-    color: white;
-    text-align: center;
+        position:relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: lightgray;
+        color: white;
+        text-align: center;
     }
+    .page-container {
+        position: relative;
+        min-height: 100vh;
+        margin-right: 20px ;
+        margin-left: 20px;
+    }
+
+
     </style>
 </head>
 <body>
@@ -41,17 +49,19 @@
         {% endif %}
     {% endwith %}
 
-    <div class="container">
+{#    <div>#}
+    <div class="page-container">
         {% block content %}{% endblock %}
     </div>
 </main>
+<br>
 
 <div class="footer">
     <footer>
         <br>
         <p class="copyright">Capstone Blood Descriminacion © 2021</p>
         <a href="https://www.flaticon.com/free-icons/blood-test" title="blood test icons">Blood test web logo created by kosonicon - Flaticon</a>
-        <br>
+        <h1></h1>
     </footer>
 
 </div>

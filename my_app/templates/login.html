@@ -3,27 +3,29 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
     <br>
-    <div class="card" style="float:left">
-        <h1>Get Tested Now!</h1>
-    </div>
-    <div class="card" style="float:right; width: 18rem;">
-        <div class="card-body">
-            <h2>Login</h2>
-            <form method="POST" action="{{ url_for('auth.login') }}">
-                {{ form.csrf_token }}
-                <dl>
-                    {{ render_field(form.username, class="form-control") }}
-                    {{ render_field(form.password, class="form-control") }}
-                    {{ render_field(form.remember, class="form-check-input") }}
-                </dl>
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-            <br>
-            <h5>Don't have an account yet?</h5>
-            <form action={{ url_for("auth.signup") }}>
-                <button type="submit" class="btn btn-danger">Sign up here</button>
-            </form>
+    <div>
+        <div class="card" style="float:left">
+            <h1>Get Tested Now!</h1>
+        </div>
+        <div class="card" style="float:right; width: 18rem;">
+            <div class="card-body">
+                <h2>Login</h2>
+                <form method="POST" action="{{ url_for('auth.login') }}">
+                    {{ form.csrf_token }}
+                    <dl>
+                        {{ render_field(form.username, class="form-control") }}
+                        {{ render_field(form.password, class="form-control") }}
+                        {{ render_field(form.remember, class="form-check-input") }}
+                    </dl>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <br>
+                <h5>Don't have an account yet?</h5>
+                <form action={{ url_for("auth.signup") }}>
+                    <button type="submit" class="btn btn-danger">Sign up here</button>
+                </form>
 
+            </div>
         </div>
     </div>
 {% endblock %}
