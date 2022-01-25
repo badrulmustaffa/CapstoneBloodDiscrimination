@@ -33,4 +33,4 @@ def post():
         db.session.commit()
         flash("Comment submitted!")
         return redirect(url_for('forum_bp.post'))
-    return render_template('comments_forum.html', form=form)
+    return render_template('forum_comments.html', form=form)

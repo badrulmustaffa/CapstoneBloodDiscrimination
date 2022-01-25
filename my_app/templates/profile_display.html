@@ -3,7 +3,7 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
     {% for result, url in profiles %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
             <img class="card-img-top" src="{{ url }}" alt="User profile photo" width="300" height="300">
             <div class="card-body">
                 <h5 class="card-title">{{ result.username }}</h5>

@@ -30,7 +30,7 @@ def signup():
             return redirect(url_for("auth.signup"))
 
         return redirect(url_for('auth.login', name=user.username))
-    return render_template('signup.html',
+    return render_template('auth_signup.html',
                            title='Sign Up',
                            form=form)
 
@@ -48,7 +48,7 @@ def login():
 
         flash("You are logged in!")
         return redirect(next or url_for('community_bp.profile', name=user.username))
-    return render_template('login.html', title='Login', form=form)
+    return render_template('auth_login.html', title='Login', form=form)
 
 
 @auth_bp.route('/logout')
