@@ -5,14 +5,14 @@ from flask_login import login_required, current_user
 from datetime import datetime
 
 from my_app import db
-from my_app.forum.forms import CommentForm, FeedbackForm
+from my_app.feedback.forms import CommentForm, FeedbackForm
 
 from my_app.models import Forum, Feedback
 
-forum_bp = Blueprint('forum_bp', __name__, url_prefix='/forum')
+feedback_bp = Blueprint('feedback_bp', __name__, url_prefix='/feedback')
 
 
-@forum_bp.route('/', defaults={'name': 'traveler'})
+@feedback_bp.route('/', defaults={'name': 'traveler'})
 @login_required
 def index(name):
     if not current_user.is_anonymous:
@@ -23,7 +23,7 @@ def index(name):
                            name=name)
 
 
-@forum_bp.route('/post', methods=['GET', 'POST'])
+@feedback_bp.route('/post', methods=['GET', 'POST'])
 def post():
     form = FeedbackForm()
     if form.validate_on_submit():
@@ -33,5 +33,5 @@ def post():
         db.session.add(submitfeedback)
         db.session.commit()
         flash("Comment submitted!")
-        return redirect(url_for('forum_bp.post'))
+        return redirect(url_for('feedback_bp.post'))
     return render_template('forum_comments.html', form=form)

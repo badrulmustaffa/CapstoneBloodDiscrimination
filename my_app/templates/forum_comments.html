@@ -6,7 +6,7 @@
     <h1>Feedback Form</h1>
     <br>
   <!--  <form action="/post" method="POST" novalidate> -->
-    <form action="{{ url_for('forum_bp.post') }}" method="POST" novalidate>
+    <form action="{{ url_for('feedback_bp.post') }}" method="POST" novalidate>
      {{ form.csrf_token  }}
     <p>
         {{ render_field(form.name, class="form-control") }}

@@ -51,8 +51,8 @@ def create_app(config_classname):
     from my_app.auth.routes import auth_bp
     app.register_blueprint(auth_bp)
 
-    from my_app.forum.routes import forum_bp
-    app.register_blueprint(forum_bp)
+    from my_app.feedback.routes import feedback_bp
+    app.register_blueprint(feedback_bp)
 
     from my_app.blog.routes import blog_bp
     app.register_blueprint(blog_bp)
