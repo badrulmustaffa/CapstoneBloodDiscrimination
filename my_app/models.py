@@ -58,3 +58,13 @@ class Forum(db.Model):
     comment = db.Column(db.Text)
     reason = db.Column(db.String(20))
     date_posted = db.Column(db.DateTime)
+
+
+class Feedback(db.Model):
+    __tablename__ = "feedback"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, unique=True, nullable=False)
+    email = db.Column(db.Text)
+    subject = db.Column(db.Text)
+    message = db.Column(db.Text)
+    date_posted = db.Column(db.DateTime)

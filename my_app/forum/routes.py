@@ -5,9 +5,9 @@ from flask_login import login_required, current_user
 from datetime import datetime
 
 from my_app import db
-from my_app.forum.forms import CommentForm
+from my_app.forum.forms import CommentForm, FeedbackForm
 
-from my_app.models import Forum
+from my_app.models import Forum, Feedback
 
 forum_bp = Blueprint('forum_bp', __name__, url_prefix='/forum')
 
@@ -25,11 +25,12 @@ def index(name):
 
 @forum_bp.route('/post', methods=['GET', 'POST'])
 def post():
-    form = CommentForm()
+    form = FeedbackForm()
     if form.validate_on_submit():
-        post = Forum(reason=form.reason.data, comment=form.comment.data,
-                     date_posted=datetime.now())
-        db.session.add(post)
+        submitfeedback = Feedback(name=form.name.data, email=form.email.data,
+                                  subject=form.subject.data, message=form.message.data,
+                                  date_posted=datetime.now())
+        db.session.add(submitfeedback)
         db.session.commit()
         flash("Comment submitted!")
         return redirect(url_for('forum_bp.post'))
