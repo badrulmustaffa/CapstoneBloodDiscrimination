@@ -70,10 +70,3 @@ class Feedback(db.Model):
     date_posted = db.Column(db.DateTime)
 
 
-class ImageSubmit(db.Model):
-    __tablename__ = "imagesubmit"
-    id = db.Column(db.Integer, primary_key=True)
-    kit_id = db.Column(db.Text, unique=True, nullable=False)
-    blood_image = db.Column(db.String(10))
-
-
