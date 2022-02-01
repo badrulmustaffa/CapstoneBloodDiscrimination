@@ -8,43 +8,43 @@
     <br>
 
 <div class="container">
-            <div class="card" style="width: 20rem;">
-                <img class="card-img-top" src="{{ url_for('static', filename='img/blood-kit-550.png') }}" alt="Blood Test Kit" width="300" height="300">
-                <div class="card-body">
-                      <br>
-                      <dl class="row">
-                      <dt class="col-sm-3">Item</dt>
-                      <dd class="col-sm-9">Blood Test Kit</dd>
+    <div class="row">
 
-                      <dt class="col-sm-3">Price</dt>
-                      <dd class="col-sm-9">
-                        <p>$5</p>
-                        <input class="btn btn-primary" type="submit" value="Order">
-
-                </div>
-            </div>
-
-
-
-                      <div class="card" style="width: 20rem;">
-                           <img class="card-img-top" src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}" alt="Blood Test Machine" width="300" height="300">
-                           <div class="card-body">
+         <div class="col">
+              <div class="card" style="width: 20rem;">
+                   <img class="card-img-top" src="{{ url_for('static', filename='img/blood-kit-550.png') }}" width="300" height="300">
+                   <div class="card-body">
                                 <br>
                                 <dl class="row">
                                 <dt class="col-sm-3">Item</dt>
-                                <dd class="col-sm-9">Blood Test Machine</dd>
+                                <dd class="col-sm-9">Blood Test Kit</dd>
 
                                 <dt class="col-sm-3">Price</dt>
                                 <dd class="col-sm-9">
-                                <p>$100</p>
+                                <p>$5</p>
                                 <input class="btn btn-primary" type="submit" value="Order">
+                   </div>
+              </div>
+         </div>
 
+                      <div class="col">
+                           <div class="card" style="width: 20rem;">
+                                <img class="card-img-top" src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}" width="300" height="300">
+                                <div class="card-body">
+                                             <br>
+                                             <dl class="row">
+                                             <dt class="col-sm-3">Item</dt>
+                                             <dd class="col-sm-9">Blood Test Machine</dd>
+
+                                             <dt class="col-sm-3">Price</dt>
+                                             <dd class="col-sm-9">
+                                             <p>$100</p>
+                                             <input class="btn btn-primary" type="submit" value="Order">
+                                </div>
                            </div>
                       </div>
 
-
-
+    </div>
 </div>
-
 
 {% endblock %}
