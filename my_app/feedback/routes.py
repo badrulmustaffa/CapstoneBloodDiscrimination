@@ -28,7 +28,8 @@ def post():
     form = FeedbackForm()
     if form.validate_on_submit():
         submitfeedback = Feedback(name=form.name.data, email=form.email.data,
-                                  subject=form.subject.data, message=form.message.data,
+                                  subject=form.subject.data,
+                                  message=form.message.data,
                                   date_posted=datetime.now())
         db.session.add(submitfeedback)
         db.session.commit()
