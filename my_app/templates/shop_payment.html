@@ -2,10 +2,70 @@
 {% set title = 'Payment' %}
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
-    <h1>Payment page</h1>
+    <h2>Order Confirmation</h2>
     <br>
-    <h4> please select your payment type</h4>
 
+         <div class="card" style="width=60rem;">
+          <h5> Order summary</h5>
+         </div>
+    <br>
+
+
+
+    <br>
+
+        <div class="card" style="width: 70rem;">
+
+            <div class="container">
+
+            <h5> Select payment method</h5>
+
+                <button type="button" class="btn btn-primary">Visa</button>
+                <button type="button" class="btn btn-secondary">Mastercard</button>
+                <button type="button" class="btn btn-success">Paypal</button>
+                <button type="button" class="btn btn-danger">Klarna</button>
+            </div>
+
+            <br>
+
+            <div class="container">
+
+            <h5> Card details</h5>
+                <form>
+                      <div class="col-4">
+                        <label for="exampleInputEmail1" class="form-label">Card Number</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                            <div class="row">
+                                  <div class="col-2">
+                                    <label for="exampleInputPassword1" class="form-label">Card Holder Name</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                  </div>
+                                    <div class="col-2">
+                                    <label for="exampleInputPassword1" class="form-label">Expiry date</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                  </div>
+                            </div>
+                       <div class="col-1">
+                        <label for="exampleInputPassword1" class="form-label">CVC</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                      </div>
+                            <br>
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember card details</label>
+                      </div>
+
+                </form>
+            </div>
+
+        </div>
+
+
+
+    <br>
+
+    <button type="submit"class="btn btn-primary">Confirm Purchase</button>
 
 
 
