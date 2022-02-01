@@ -18,5 +18,6 @@ def index(name):
     return render_template('index.html',
                            title='Homepage',
                            message='This page is still empty',
+                           message2='Hi Jack',
                            name=name)
 
