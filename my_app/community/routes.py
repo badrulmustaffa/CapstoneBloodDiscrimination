@@ -55,7 +55,7 @@ def create_profile():
         db.session.commit()
         return redirect(
             url_for('community_bp.view_profile', username=profile.username))
-    return render_template('profile.html', form=form,
+    return render_template('profile_create.html', form=form,
                            username=current_user.username,
                            message='New profile')
 
@@ -78,7 +78,7 @@ def update_profile():
         profile.photo = filename
         db.session.commit()
         return redirect(url_for('community_bp.view_profile', username=profile.username))
-    return render_template('profile.html', form=form, username=profile.username,
+    return render_template('profile_create.html', form=form, username=profile.username,
                            message='Profile update')
 
 
