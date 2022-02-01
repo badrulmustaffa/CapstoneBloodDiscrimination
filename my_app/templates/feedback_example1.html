@@ -12,7 +12,6 @@
     </div>
     <div>
             <form class="form-inline" method="POST" action="{{ url_for('forum_bp.posts') }}">
-
                 <dl>
                     {{ form.csrf_token }}
                     {{ render_field(form.reason, class="form-control") }}

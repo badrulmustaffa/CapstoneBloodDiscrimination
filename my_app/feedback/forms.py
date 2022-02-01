@@ -18,3 +18,6 @@ class FeedbackForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
     message = TextField('Message', widget=TextArea(), validators=[DataRequired()])
 
+
+class FeedbackReplyForm(FlaskForm):
+    reply = TextField('Reply here')

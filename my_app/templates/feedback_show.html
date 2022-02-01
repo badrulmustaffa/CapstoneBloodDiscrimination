@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% set title = 'Show Feedback' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+
+    <div class="post-heading">
+        <h1>{{ post.subject }}</h1>
+        <p class="subheading">Comment: {{ post.message }}</p>
+        <p class="meta">Posted by {{ post.name }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
+    </div>
+
+    <div>
+        <form class="form-inline" method="POST" action="{{ url_for('feedback_bp.reply') }}">
+{#                            <form class="form-inline" method="POST" action="{{ url_for('feedback_bp.reply') }}">#}
+            <dl>
+                {{ form.csrf_token }}
+                {{ render_field(form.reply, class="form-control") }}
+            </dl>
+            <button type="submit" class="btn btn-primary">Post</button>
+            <button type="reset" class="btn btn-primary">Cancel</button>
+        </form>
+    </div>
+
+    <p>{{ message }}</p>
+<hr>
+<!-- Post Content -->
+{#<article>#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-lg-8 col-md-10 mx-auto">#}
+{#                {{ post.content|safe }}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</article>#}
+
+
+{% endblock %}
