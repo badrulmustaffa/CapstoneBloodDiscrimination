@@ -28,10 +28,11 @@ def post():
     form = FeedbackForm()
     if form.validate_on_submit():
         submitfeedback = Feedback(name=form.name.data, email=form.email.data,
-                                  subject=form.subject.data, message=form.message.data,
+                                  subject=form.subject.data,
+                                  message=form.message.data,
                                   date_posted=datetime.now())
         db.session.add(submitfeedback)
         db.session.commit()
         flash("Comment submitted!")
         return redirect(url_for('feedback_bp.post'))
-    return render_template('forum_comments.html', form=form)
+    return render_template('feedback_post.html', form=form)

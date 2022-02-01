@@ -10,7 +10,7 @@ class Config(object):
     DATA_PATH = Path(__file__).parent.parent.joinpath("data").joinpath("database")
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + str(DATA_PATH.joinpath('database.sqlite'))
 
-    # FOr photo upload
+    # For photo upload
     UPLOADED_PHOTOS_DEST = Path(__file__).parent.parent.joinpath("data").joinpath("user")
 
 
