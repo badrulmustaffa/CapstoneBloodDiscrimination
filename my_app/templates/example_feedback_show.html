@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% set title = 'Show Feedback' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+
+    <div>
+        <div class="card post-heading">
+            <div style="margin-left: 10px">
+                <h1>{{ post.subject }}</h1>
+                <p class="subheading">Comment: {{ post.message }}</p>
+                <p class="meta">Posted by {{ post.name }} on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+            </div>
+        </div>
+
+        <div>
+            <h5>Replies:</h5>
+            {% for reply in replies %}
+                <div class="card" style="margin-left: 30px">
+                    <div style="margin-left: 10px">
+                        <p>{{ reply.reply }}</p>
+                        <p>by {{ reply.username }} on {{ reply.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+        <br>
+        <div>
+            <form class="form-inline" style="margin-left: 30px" method="POST" action="">
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.reply, class="form-control") }}
+                </dl>
+                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="reset" class="btn btn-primary">Cancel</button>
+            </form>
+        </div>
+        <hr>
+    </div>
+
+
+{% endblock %}

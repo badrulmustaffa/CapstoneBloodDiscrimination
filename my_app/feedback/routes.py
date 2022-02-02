@@ -33,9 +33,10 @@ def post():
                                   date_posted=datetime.now())
         db.session.add(submitfeedback)
         db.session.commit()
-        flash("Comment submitted!")
+        flash("Feedback submitted, thank you for your help!")
         return redirect(url_for('feedback_bp.post'))
-    return render_template('feedback_post.html', form=form)
+
+    return render_template('feedback_form.html', form=form)
 
 
 @feedback_bp.route('/reply', defaults={'name': 'traveler'})
@@ -51,20 +52,27 @@ def reply(name):
     return render_template('feedback_reply.html', posts=posts, name=name)
 
 
-@feedback_bp.route('/show/<int:post_id>')
+@feedback_bp.route('/show/<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def show(post_id):
-    post = Feedback.query.filter_by(id=post_id).one()
+    if not current_user.is_anonymous:
+        name = current_user.username
 
+    posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
+
+    show = Feedback.query.filter_by(id=post_id).one()
     form = FeedbackReplyForm()
+    replies = FeedbackReply.query.filter_by(feedback_id=post_id).order_by(FeedbackReply.date_posted.desc()).all()
+
     if form.validate_on_submit():
         feedbackreply = FeedbackReply(reply=form.reply.data,
                                       date_posted=datetime.now(),
+                                      username=current_user.username,
                                       feedback_id=post_id,
                                       user_id=current_user.id)
         db.session.add(feedbackreply)
         db.session.commit()
         flash("Reply submitted!")
-        return redirect(url_for('feedback_bp.reply'))
+        return redirect(url_for('feedback_bp.show', post_id=post_id))
 
-    return render_template('feedback_show.html', post=post, form=form, message=post_id)
+    return render_template('feedback_show.html', posts=posts, show=show, replies=replies, form=form)

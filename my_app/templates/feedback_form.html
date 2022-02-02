@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% set title = 'Feedback Form' %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+    <div class="card" style="width: 100%; background-color: lavender">
+        <div style="margin: 10px 10px 10px 10px">
+            <h1>Feedback Form</h1>
+
+            <!--  <form action="/post" method="POST" novalidate> -->
+            <form action="{{ url_for('feedback_bp.post') }}" method="POST" novalidate>
+                {{ form.csrf_token }}
+                <p>
+                    {{ render_field(form.name, class="form-control") }}
+                    {{ render_field(form.email, class="form-control") }}
+                    {{ render_field(form.subject, class="form-control") }}
+                    {{ render_field(form.message, class="form-control") }}
+                </p>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

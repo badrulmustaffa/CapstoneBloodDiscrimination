@@ -72,6 +72,7 @@ class Feedback(db.Model):
 class FeedbackReply(db.Model):
     __tablename__ = "feedbackreply"
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text, nullable=False)
     reply = db.Column(db.Text)
     date_posted = db.Column(db.DateTime)
     feedback_id = db.Column(db.Integer, db.ForeignKey('feedback.id'), nullable=False)

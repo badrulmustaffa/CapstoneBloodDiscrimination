@@ -3,30 +3,26 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
 
-{#            <div class="col-lg-8 col-md-10 mx-auto">#}
-    <div>
-        {% for post in posts %}
-            <div class="post-preview">
-                <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
-                    <h2 class="post-title">
-                        {{ post.subject }}
-                    </h2>
-                    <h5 class="post-subtitle">
-                        {{ post.message }}
-                    </h5>
-                </a>
-                <p class="post-meta">Posted by {{ post.name }}
-                    on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
-            </div>
-
-            <div>
-
-
-            </div>
-            <hr>
-        {% endfor %}
+    {#            <div class="col-lg-8 col-md-10 mx-auto">#}
+    <div class="card" style="width: 100%; background-color:lavender">
+        <div style="margin-left: 10px">
+            {% for post in posts %}
+                <div class="post-preview">
+                    <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
+                        <h2 class="post-title">
+                            {{ post.subject }}
+                        </h2>
+                        <h5 class="post-subtitle">
+                            {{ post.message }}
+                        </h5>
+                    </a>
+                    <p class="post-meta">Posted by {{ post.name }}
+                        on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
     </div>
-
 {% endblock %}
 
 
