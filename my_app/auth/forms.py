@@ -1,7 +1,7 @@
 # Done by Muhammad Mustaffa
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField, SelectField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, EqualTo, ValidationError
 
@@ -14,6 +14,7 @@ class SignupForm(FlaskForm):
     password = PasswordField(label='Password', validators=[DataRequired()])
     password_repeat = PasswordField(label='Repeat Password',
                                     validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
+    type = SelectField(label='Account type', choices=['User', 'Admin', 'LabTech'])
 
     def validate_email(self, email):
         users = User.query.filter_by(email=email.data).first()

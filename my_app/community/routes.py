@@ -39,7 +39,7 @@ def create_profile():
     form = ProfileForm()
     if request.method == 'POST' and form.validate_on_submit():
         # Set photo name to default if no photos attached
-        filename = 'default.jpg'
+        filename = 'default.png'
         # CHeck if form contains photo
         if 'photo' in request.files:
             # if the filename is not empty, save the the photo
@@ -117,6 +117,7 @@ def view_profile(username=None):
     if username is None:
         username = current_user.username
 
+    type = current_user.type
     results = Profile.query.filter_by(username=username).all()
     history = History.query.filter_by(user_id=current_user.id).all()
     urls = []
@@ -124,6 +125,6 @@ def view_profile(username=None):
         if result.photo:
             url = photos.url(result.photo)
             urls.append(url)
-    return render_template('profile_view.html', profiles=zip(results, urls), history=history)
+    return render_template('profile_view.html', profiles=zip(results, urls), usertype=type, history=history)
 
 

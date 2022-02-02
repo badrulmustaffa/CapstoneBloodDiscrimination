@@ -18,7 +18,7 @@ auth_bp = Blueprint('auth', __name__)
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data, type=form.type.data)
         user.set_password(form.password.data)
         try:
             db.session.add(user)
@@ -30,6 +30,7 @@ def signup():
             return redirect(url_for("auth.signup"))
 
         return redirect(url_for('auth.login', name=user.username))
+
     return render_template('auth_signup.html',
                            title='Sign Up',
                            form=form)

@@ -11,6 +11,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.Text, unique=True, nullable=False)
     email = db.Column(db.Text, unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
+    type = db.Column(db.String(12), nullable=False)
 
     def __repr__(self):
         return f"{self.id} {self.username} {self.email} {self.password}"

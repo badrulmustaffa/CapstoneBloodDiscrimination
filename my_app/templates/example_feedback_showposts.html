@@ -6,13 +6,13 @@
     <br>
     <br>
 
-        <ul>
-                {% for timestamp, reason, comment in comments.items() %}
-                <li>Date: {{ timestamp }}</li>
-                <li>Reason: {{ reason }}</li>
-                <li>Comment: {{ comment }}</li>
+    <ul>
+        {% for timestamp, reason, comment in comments.items() %}
+            <li>Date: {{ timestamp }}</li>
+            <li>Reason: {{ reason }}</li>
+            <li>Comment: {{ comment }}</li>
 
-                {% endfor %}
-        </ul>
+        {% endfor %}
+    </ul>
 
 {% endblock %}
