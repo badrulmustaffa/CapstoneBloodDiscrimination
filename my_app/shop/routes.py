@@ -15,6 +15,7 @@ shop_bp = Blueprint('shop_bp', __name__, url_prefix='/shop')
 def product(name):
     if not current_user.is_anonymous:
         name = current_user.username
+
     return render_template('shop_product.html', name=name)
 
 

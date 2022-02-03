@@ -34,7 +34,7 @@ def create_app(config_classname):
 
     with app.app_context():
         # Import User
-        from my_app.models import User, Profile, History, Blogpost, Forum, Feedback
+        from my_app.models import User, Profile, History, Blogpost, Forum, Feedback, Trial
         db.create_all()
 
         # Import Dash application
@@ -62,5 +62,8 @@ def create_app(config_classname):
 
     from my_app.algorithm.routes import algorithm_bp
     app.register_blueprint(algorithm_bp)
+
+    from my_app.trial.routes import trial_bp
+    app.register_blueprint(trial_bp)
 
     return app

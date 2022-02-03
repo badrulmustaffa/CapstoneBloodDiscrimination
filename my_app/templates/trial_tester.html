@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <div>
+        <h2>{{ fill }}</h2>
+        <form action="" method="POST" novalidate>
+                {{ borang.csrf_token }}
+                <p>
+                    {{ render_field(borang.registration_id, class="form-control") }}
+                </p>
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

@@ -70,6 +70,7 @@ class Feedback(db.Model):
     message = db.Column(db.Text)
     date_posted = db.Column(db.DateTime)
 
+
 class FeedbackReply(db.Model):
     __tablename__ = "feedbackreply"
     id = db.Column(db.Integer, primary_key=True)
@@ -80,3 +81,8 @@ class FeedbackReply(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 
+class Trial(db.Model):
+    __tablename__ = "trial"
+    id = db.Column(db.Integer, primary_key=True)
+    registration_number = db.Column(db.Text)
+    date = db.Column(db.DateTime)
