@@ -10,22 +10,22 @@
     <title>{{ title }}</title>
 
     <style>
-    .footer {
-        position:relative;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: lightgray;
-        color: white;
-        text-align: center;
-    }
-    .page-container {
-        position: relative;
-        min-height: 100vh;
-        margin-right: 20px ;
-        margin-left: 20px;
-    }
+        .footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: lightgray;
+            color: white;
+            text-align: center;
+        }
 
+        .page-container {
+            position: relative;
+            min-height: 100vh;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
 
     </style>
 </head>
@@ -33,35 +33,33 @@
 
 {# Add to the body section #}
 <header>
-    {% include 'nav_bar.html' %}
+    {% include 'nav_bar_v2.html' %}
 </header>
 
-<main>
-
+<main style="background-color: #d0e5ff">
     {# Displays flashed messages on a page #}
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul id="messages" class="list-unstyled">
                 {% for message in messages %}
-                    <li class="alert alert-primary" role="alert">{{ message }}</li>
+                    <li class="alert alert-info" role="alert">{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
     {% endwith %}
 
-{#    <div>#}
+    {#    <div>#}
     <div class="page-container">
         {% block content %}{% endblock %}
     </div>
 </main>
-<br>
 
-<div class="footer">
+<div class="footer" style="background-color: #d0e5ff">
     <footer>
-        <br>
         <p class="copyright">Capstone Blood Descriminacion © 2021</p>
-        <a href="https://www.flaticon.com/free-icons/blood-test" title="blood test icons">Blood test web logo created by kosonicon - Flaticon</a>
-        <h1></h1>
+        <a href="https://www.flaticon.com/free-icons/blood-test" title="blood test icons">Blood test web logo created by
+            kosonicon - Flaticon</a>
+
     </footer>
 
 </div>

@@ -3,9 +3,10 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
 
-    {#            <div class="col-lg-8 col-md-10 mx-auto">#}
-    <div class="card" style="width: 100%; background-color:lavender">
-        <div style="margin-left: 10px">
+{#            <div class="col-lg-8 col-md-10 mx-auto">#}
+<div class="card" style="width: 100%; background-color:lavender">
+    <div style="margin-left: 10px">
+        {% if posts %}
             {% for post in posts %}
                 <div class="post-preview">
                     <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
@@ -21,8 +22,13 @@
                 </div>
                 <hr>
             {% endfor %}
-        </div>
+
+        {% else %}
+    <h2>No feedback yet!</h2>
+        {% endif %}
+
     </div>
+</div>
 {% endblock %}
 
 

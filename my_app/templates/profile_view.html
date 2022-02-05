@@ -14,123 +14,128 @@
         }
     </style>
 
-    {% for result, url in profiles %}
-        <div class="card" style="width: 100%;">
-            <h1>User's Profile</h1>
-            <table>
-                <tr>
-                    <td style="width: 300px">
-                        <div style="margin-top: 0%">
-                            <img class="center rounded" src="{{ url }}" alt="User profile photo" height="300"
-                                 width="300">
+    <div class="card" style="width: 100%; background-color: lavender">
+        <h1>User's Profile</h1>
+        <table>
+            <tr>
+                <td style="width: 300px">
+                    <div style="margin-top: 0%">
+                        <img class="center rounded"
+                             src="{{ url_for('community_bp.profile_picture', filename=profile.photo) }}"
+                             alt="User profile photo" height="300"
+                             width="300">
 
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card-title h4 p-3 mb-2 bg-secondary text-white rounded">User's detail
-                            {% if result.username == current_user.username %}
-                                <form style="float:right; margin-top: -7px"
-                                      action="{{ url_for("community_bp.update_profile") }}">
-                                    <button type="submit" class="btn btn-primary">Edit profile</button>
-                                </form>
-                            {% endif %}
-                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card-title h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">User's
+                        detail
+                        {% if profile.username == current_user.username %}
+                            <form style="float:right; margin-top: -7px"
+                                  action="{{ url_for("community_bp.update_profile") }}">
+                                <button type="submit" class="btn btn-primary">Edit profile</button>
+                            </form>
+                        {% endif %}
+                    </div>
 
+                    <div class="card">
+                        <table>
+                            <tr>
+                                <td style="width: 200px"><h5 class="card-text">Username</h5></td>
+                                <td style="width: 10px"><h5 class="card-text">:</h5></td>
+                                <td><h6 class="card-text">{{ profile.username }}</h6></td>
+                            </tr>
+                            <tr>
+                                <td><h5 class="card-text">Bio</h5></td>
+                                <td><h5 class="card-text">:</h5></td>
+                                <td><h6 class="card-text">{{ profile.bio }}</h6></td>
+                            </tr>
+                            <tr>
+                                <td><h5 class="card-text">Account type</h5></td>
+                                <td><h5 class="card-text">:</h5></td>
+                                <td><h6 class="card-text">{{ usertype }}</h6></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <br>
+
+                    <div>
+                        <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">Test
+                            History
+                        </div>
                         <div class="card">
                             <table>
-                                <tr>
-                                    <td style="width: 200px"><h5 class="card-text">Username</h5></td>
-                                    <td style="width: 10px"><h5 class="card-text">:</h5></td>
-                                    <td><h6 class="card-text">{{ result.username }}</h6></td>
-                                </tr>
-                                <tr>
-                                    <td><h5 class="card-text">Bio</h5></td>
-                                    <td><h5 class="card-text">:</h5></td>
-                                    <td><h6 class="card-text">{{ result.bio }}</h6></td>
-                                </tr>
-                                <tr>
-                                    <td><h5 class="card-text">Account type</h5></td>
-                                    <td><h5 class="card-text">:</h5></td>
-                                    <td><h6 class="card-text">{{ usertype }}</h6></td>
-                                </tr>
+                                <th>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Kit ID</th>
+                                        <th>Image</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </th>
+
+                                {% for user_id in history %}
+                                    <tr>
+                                        <td>
+                                            {{ user_id.time }}
+                                        </td>
+                                        <td>
+                                            {{ user_id.mean }}
+                                        </td>
+                                        <td>
+                                            {{ user_id.start }}
+                                        </td>
+                                        <td>
+                                            {{ user_id.end }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </table>
-
                         </div>
-                        <br>
+                    </div>
+                    <br>
 
-                        <div>
-                            <div class="h4 p-3 mb-2 bg-secondary text-white rounded">Test History</div>
-                            <div class="card">
-                                <table>
-                                    <th>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Kit ID</th>
-                                            <th>Image</th>
-                                            <th>Result</th>
-                                        </tr>
-                                    </th>
-
-                                    {% for user_id in history %}
-                                        <tr>
-                                            <td>
-                                                {{ user_id.time }}
-                                            </td>
-                                            <td>
-                                                {{ user_id.mean }}
-                                            </td>
-                                            <td>
-                                                {{ user_id.start }}
-                                            </td>
-                                            <td>
-                                                {{ user_id.end }}
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </table>
-                            </div>
+                    <div>
+                        <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">
+                            Purchase history
                         </div>
-                        <br>
+                        <div class="card">
+                            <table>
+                                <th>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Order number</th>
+                                        <th>Item</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </th>
 
-                        <div>
-                            <div class="h4 p-3 mb-2 bg-secondary text-white rounded">Purchase history</div>
-                            <div class="card">
-                                <table>
-                                    <th>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Order number</th>
-                                            <th>Item</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </th>
-
-                                    {% for user_id in history %}
-                                        <tr>
-                                            <td>
-                                                {{ user_id.time }}
-                                            </td>
-                                            <td>
-                                                {{ user_id.mean }}
-                                            </td>
-                                            <td>
-                                                {{ user_id.start }}
-                                            </td>
-                                            <td>
-                                                {{ user_id.end }}
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </table>
-                            </div>
+                                {% for user_id in history %}
+                                    <tr>
+                                        <td>
+                                            {{ user_id.time }}
+                                        </td>
+                                        <td>
+                                            {{ user_id.mean }}
+                                        </td>
+                                        <td>
+                                            {{ user_id.start }}
+                                        </td>
+                                        <td>
+                                            {{ user_id.end }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
 
 
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </table>
-        </div>
-    {% endfor %}
+        </table>
+    </div>
 {% endblock %}

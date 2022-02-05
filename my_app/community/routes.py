@@ -1,11 +1,14 @@
 # Done by Muhammad Mustaffa
 
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, send_from_directory
 from flask_login import login_required, current_user
+from pathlib import Path
 
+import my_app.config
 from my_app import db, photos
 from my_app.community.forms import ProfileForm
 from my_app.models import Profile, User, History
+from my_app.config import Config
 
 community_bp = Blueprint('community_bp', __name__, url_prefix='/community')
 
@@ -83,31 +86,31 @@ def update_profile():
                            message='Profile update')
 
 
-@community_bp.route('/display_profiles', methods=['GET', 'POST'])
-@community_bp.route('/display_profiles/<username>', methods=['POST', 'GET'])
-@login_required
-def display_profiles(username=None):
-    results = None
-    if username is None:
-        if request.method == 'POST':
-            term = request.form['search_term']
-            if term == "":
-                flash("Enter a name to search for")
-                return redirect(url_for('community_bp.index'))
-            results = Profile.query.filter(Profile.username.contains(term)).all()
-    else:
-        term = username
-        results = Profile.query.filter(Profile.username.contains(term)).all()
-    if not results:
-        flash("Username not found")
-        return redirect(url_for('community_bp.index'))
-
-    urls = []
-    for result in results:
-        if result.photo:
-            url = photos.url(result.photo)
-            urls.append(url)
-    return render_template('profile_display.html', profiles=zip(results, urls))
+# @community_bp.route('/display_profiles', methods=['GET', 'POST'])
+# @community_bp.route('/display_profiles/<username>', methods=['POST', 'GET'])
+# @login_required
+# def display_profiles(username=None)
+#     results = None
+#     if username is None:
+#         if request.method == 'POST':
+#             term = request.form['search_term']
+#             if term == "":
+#                 flash("Enter a name to search for")
+#                 return redirect(url_for('community_bp.index'))
+#             results = Profile.query.filter(Profile.username.contains(term)).all()
+#     else:
+#         term = username
+#         results = Profile.query.filter(Profile.username.contains(term)).all()
+#     if not results:
+#         flash("Username not found")
+#         return redirect(url_for('community_bp.index'))
+#
+#     urls = []
+#     for result in results:
+#         if result.photo:
+#             url = photos.url(result.photo)
+#             urls.append(url)
+#     return render_template('profile_display.html', profiles=zip(results, urls))
 
 
 @community_bp.route('/view_profile', methods=['GET', 'POST'])
@@ -118,13 +121,22 @@ def view_profile(username=None):
         username = current_user.username
 
     type = current_user.type
-    results = Profile.query.filter_by(username=username).all()
+    profile = Profile.query.filter_by(username=username).one()
     history = History.query.filter_by(user_id=current_user.id).all()
-    urls = []
-    for result in results:
-        if result.photo:
-            url = photos.url(result.photo)
-            urls.append(url)
-    return render_template('profile_view.html', profiles=zip(results, urls), usertype=type, history=history)
+
+    # falsk-Reupload method
+    # url = photos.url(profile.photo)
+
+    # Using static method
+    # filename = 'img/' + profile.photo
+    # url = url_for('static', filename=filename)
+    # # url = photos.url('default.png')
+
+    return render_template('profile_view.html', profile=profile, usertype=type, history=history)
+
+
+@community_bp.route('/profile_picture/<filename>')
+def profile_picture(filename):
+    return send_from_directory(Config.UPLOADED_PHOTOS_DEST, '/user', filename=filename, as_attachment=True)
 
 

@@ -26,7 +26,7 @@ def create_app(config_classname):
     login_manager.init_app(app)
     csrf.init_app(app)
     configure_uploads(app, photos)
-
+    
     # CSRFProtect extension conflicted with Dash, line below exclude Dash from CSRFProtect
     # (Adapted from https://stackoverflow.com/questions/51585596/dash-callbacks-not-working-if-dash-app-is-created-and-called-from-flask)
     csrf._exempt_views.add('dash.dash.dispatch')
