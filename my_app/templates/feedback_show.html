@@ -8,19 +8,36 @@
             <div class="card col-sm-3" style="background-color:lavender;">
                 <div>
                     {% for post in posts %}
-                        <div class="post-preview">
-                            <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
-                                <h2 class="post-title">
-                                    {{ post.subject }}
-                                </h2>
-                                <h5 class="post-subtitle">
-                                    {{ post.message }}
-                                </h5>
-                            </a>
-                            <p class="post-meta">Posted by {{ post.name }}
-                                on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
-                        </div>
-                        <hr>
+                        {% if post.subject == show.subject %}
+                            <div class="post-preview" style="background-color: lavenderblush">
+                                <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
+                                    <h2 class="post-title">
+                                        {{ post.subject }}
+                                    </h2>
+                                    <h5 class="post-subtitle">
+                                        {{ post.message }}
+                                    </h5>
+                                </a>
+                                <p class="post-meta">Posted by {{ post.name }}
+                                    on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                                <hr>
+                            </div>
+                        {% else %}
+                            <div class="post-preview">
+                                <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
+                                    <h2 class="post-title">
+                                        {{ post.subject }}
+                                    </h2>
+                                    <h5 class="post-subtitle">
+                                        {{ post.message }}
+                                    </h5>
+                                </a>
+                                <p class="post-meta">Posted by {{ post.name }}
+                                    on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                                <hr>
+                            </div>
+                        {% endif %}
+
                     {% endfor %}
                 </div>
             </div>
