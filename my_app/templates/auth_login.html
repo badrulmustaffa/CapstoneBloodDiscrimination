@@ -2,6 +2,13 @@
 {% set title = 'Login' %}
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
+    <style>
+        .below-buttons {
+            width: 50%;
+            margin: auto;
+        }
+
+    </style>
 
     <div style="background-image: url({{ url_for('static', filename='img/auth_login_background.jpg') }});
             background-repeat: no-repeat; background-size: cover;
@@ -48,7 +55,40 @@
             </div>
 
         </div>
+        <div class="row" style="margin: 30px auto">
+            <table class="center" style="margin: auto;">
+                <tr>
+                    <th style="width: 30%">
+                        <div class="card below-buttons border-primary">
+                            <img class="below-buttons" style="margin-top: 10px"
+                                 src="{{ url_for('static', filename='img/auth_login_faq.png' ) }}">
+                            <a class="stretched-link" style="margin: auto" href="{{ url_for("blog_bp.about") }}">
+                                Frequently Asked Questions (FAQ)
+                            </a>
+                        </div>
+                    </th>
+                    <th style="width: 30%">
+                        <div class="card below-buttons border-primary">
+                            <img class="below-buttons" style="margin-top: 10px"
+                                 src="{{ url_for('static', filename='img/auth_login_newspaper.png' ) }}">
+                            <a class="stretched-link" style="margin: auto" href="{{ url_for("blog_bp.about") }}">
+                                Latest News
+                            </a>
+                        </div>
+                    </th>
+                    <th style="width: 30%">
+                        <div class="card below-buttons border-primary">
+                            <img class="below-buttons" style="margin-top: 10px"
+                                 src="{{ url_for('static', filename='img/auth_login_shopping-cart.png' ) }}">
+                            <a class="stretched-link" style="margin: auto" href="{{ url_for("shop_bp.product") }}">
+                                Product List
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+            </table>
 
+        </div>
 
         {#        <img src="{{ url_for('static', filename='img/auth_login_background.jpg') }}">#}
 
