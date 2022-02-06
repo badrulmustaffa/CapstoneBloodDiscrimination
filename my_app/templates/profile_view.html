@@ -15,127 +15,134 @@
     </style>
 
     <div class="card" style="width: 100%; background-color: lavender">
-        <h1>User's Profile</h1>
-        <table>
-            <tr>
-                <td style="width: 300px">
-                    <div style="margin-top: 0%">
+        <div class="card-body">
+            <h1>User's Profile</h1>
+            <div class="row">
+                <div class="col col-sm-2">
+                    <div style="margin-top: 0%; width: 100%">
                         <img class="center rounded"
                              src="{{ url_for('community_bp.profile_picture', filename=profile.photo) }}"
-                             alt="User profile photo" height="300"
-                             width="300">
-
+                             alt="User profile photo" height="300px" width="300px">
                     </div>
-                </td>
-                <td>
-                    <div class="card-title h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">User's
-                        detail
-                        {% if profile.username == current_user.username %}
-                            <form style="float:right; margin-top: -7px"
-                                  action="{{ url_for("community_bp.update_profile") }}">
-                                <button type="submit" class="btn btn-primary">Edit profile</button>
-                            </form>
-                        {% endif %}
-                    </div>
+                </div>
+                <div class="col col-sm-10">
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <div class="card-header h4 p-3 mb-2 text-white rounded"
+                                     style="background-color: #e44d44">
+                                    User's detail
+                                    {% if profile.username == current_user.username %}
+                                        <form style="float:right; margin-top: -7px"
+                                              action="{{ url_for("community_bp.update_profile") }}">
+                                            <button type="submit" class="btn btn-primary">Edit profile</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
 
-                    <div class="card">
-                        <table>
-                            <tr>
-                                <td style="width: 200px"><h5 class="card-text">Username</h5></td>
-                                <td style="width: 10px"><h5 class="card-text">:</h5></td>
-                                <td><h6 class="card-text">{{ profile.username }}</h6></td>
-                            </tr>
-                            <tr>
-                                <td><h5 class="card-text">Bio</h5></td>
-                                <td><h5 class="card-text">:</h5></td>
-                                <td><h6 class="card-text">{{ profile.bio }}</h6></td>
-                            </tr>
-                            <tr>
-                                <td><h5 class="card-text">Account type</h5></td>
-                                <td><h5 class="card-text">:</h5></td>
-                                <td><h6 class="card-text">{{ usertype }}</h6></td>
-                            </tr>
-                        </table>
+                                <div class="card-body" style="background-color: #f6c9c7">
+                                    <table>
+                                        <tr>
+                                            <td style="width: 200px"><h5 class="card-text">Username</h5></td>
+                                            <td style="width: 10px"><h5 class="card-text">:</h5></td>
+                                            <td><h6 class="card-text">{{ profile.username }}</h6></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h5 class="card-text">Bio</h5></td>
+                                            <td><h5 class="card-text">:</h5></td>
+                                            <td><h6 class="card-text">{{ profile.bio }}</h6></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h5 class="card-text">Account type</h5></td>
+                                            <td><h5 class="card-text">:</h5></td>
+                                            <td><h6 class="card-text">{{ usertype }}</h6></td>
+                                        </tr>
+                                    </table>
 
-                    </div>
-                    <br>
+                                </div>
+                                <br>
 
-                    <div>
-                        <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">Test
-                            History
-                        </div>
-                        <div class="card">
-                            <table>
-                                <th>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Kit ID</th>
-                                        <th>Image</th>
-                                        <th>Result</th>
-                                    </tr>
-                                </th>
+                                <div>
+                                    <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">Test
+                                        History
+                                    </div>
+                                    <div class="card-body" style="background-color: #f6c9c7">
+                                        <table class="table table-sm">
+                                            <th>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Kit ID</th>
+                                                    <th>Image</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                            </th>
 
-                                {% for user_id in history %}
-                                    <tr>
-                                        <td>
-                                            {{ user_id.time }}
-                                        </td>
-                                        <td>
-                                            {{ user_id.mean }}
-                                        </td>
-                                        <td>
-                                            {{ user_id.start }}
-                                        </td>
-                                        <td>
-                                            {{ user_id.end }}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
-                    </div>
-                    <br>
+                                            {% for user_id in history %}
+                                                <tr>
+                                                    <td>
+                                                        {{ user_id.time }}
+                                                    </td>
+                                                    <td>
+                                                        {{ user_id.mean }}
+                                                    </td>
+                                                    <td>
+                                                        {{ user_id.start }}
+                                                    </td>
+                                                    <td>
+                                                        {{ user_id.end }}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                                <br>
 
-                    <div>
-                        <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">
-                            Purchase history
-                        </div>
-                        <div class="card">
-                            <table>
-                                <th>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Order number</th>
-                                        <th>Item</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </th>
+                                <div>
+                                    <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">
+                                        Purchase history
+                                    </div>
+                                    <div class="card-body" style="background-color: #f6c9c7">
+                                        <table class="table table-sm">
+                                            <th>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Order number</th>
+                                                    <th>Item</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </th>
 
-                                {% for user_id in history %}
-                                    <tr>
-                                        <td>
-                                            {{ user_id.time }}
-                                        </td>
-                                        <td>
-                                            {{ user_id.mean }}
-                                        </td>
-                                        <td>
-                                            {{ user_id.start }}
-                                        </td>
-                                        <td>
-                                            {{ user_id.end }}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
+                                            {% for user_id in history %}
+                                                <tr>
+                                                    <td>
+                                                        {{ user_id.time }}
+                                                    </td>
+                                                    <td>
+                                                        {{ user_id.mean }}
+                                                    </td>
+                                                    <td>
+                                                        {{ user_id.start }}
+                                                    </td>
+                                                    <td>
+                                                        {{ user_id.end }}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
 
 
-                </td>
-            </tr>
+                            </td>
+                        </tr>
 
-        </table>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 {% endblock %}
