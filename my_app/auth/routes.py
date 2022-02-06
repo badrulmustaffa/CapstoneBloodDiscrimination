@@ -23,13 +23,15 @@ def signup():
         try:
             db.session.add(user)
             db.session.commit()
-            flash(f"Hello, {user.username}! You are signed up. Please login to use other features")
+            flash(f"Hello, {user.username}! You are signed up.")
         except IntegrityError:
             db.session.rollback()
             flash(f"Error, unable to register {form.email.data}.", 'error')
             return redirect(url_for("auth.signup"))
 
-        return redirect(url_for('auth.login', name=user.username))
+        login_user(user, remember=True, duration=timedelta(minutes=1))
+        flash("You are logged in!")
+        return redirect(url_for('community_bp.profile', name=user.username))
 
     return render_template('auth_signup.html',
                            title='Sign Up',

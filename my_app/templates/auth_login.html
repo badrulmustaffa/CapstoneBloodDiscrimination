@@ -3,30 +3,55 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
 
-    <div style="background-image: url({{ url_for('static', filename='img/auth_login_background.jpg') }})">
-        <div class="card" style="float:left">
-            <h1>Get Tested Now!</h1>
-        </div>
-        <div class="card" style="float:right; width: 18rem;">
-            <div class="card-body">
-                <h2>Login</h2>
-                <form method="POST" action="{{ url_for('auth.login') }}">
-                    {{ form.csrf_token }}
-                    <dl>
-                        {{ render_field(form.username, class="form-control") }}
-                        {{ render_field(form.password, class="form-control") }}
-                        {{ render_field(form.remember, class="form-check-input") }}
-                    </dl>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-                <br>
-                <h5>Don't have an account yet?</h5>
-                <form action={{ url_for("auth.signup") }}>
-                    <button type="submit" class="btn btn-danger">Sign up here</button>
-                </form>
+    <div style="background-image: url({{ url_for('static', filename='img/auth_login_background.jpg') }});
+            background-repeat: no-repeat; background-size: cover;
+            margin: auto; min-height: 800px">
+        <div class="row">
+            <div class="col">
+                <div class="card"
+                     style="float:left; margin-left: 5%; margin-top: 30%; background-color: rgba(255, 255, 255, 0.25)">
+                    <div class="card-body">
+                        <h1>Get Tested Now!</h1>
+                        <p>tak pernah lepas kau dalam ingatanku, tak pernah bisa aku melupakanmu, ku jatuh cinta pada
+                            orang yang salah, kau nenek sahabatku</p>
+                        <p>rinduku ini bagaikan di hujung hati, cinta ini bagai ilusi yang tak bertepi, cinta mengapa
+                            singgah d hatiku, kau salah, memilih tempat dan waktu, tak tahan aku menahan rasa, aku
+                            kecewa</p>
+                        <p>Kenapakah, kau singgah dihati ku kau salah</p>
+                    </div>
+
+                </div>
 
             </div>
+            <div class="col">
+                <div class="card border-primary" style="float:right; width: auto; margin-top: 5%; margin-right: 5%">
+                    <div class="card-body">
+                        <h2>Login</h2>
+                        <form method="POST" action="{{ url_for('auth.login') }}">
+                            {{ form.csrf_token }}
+                            <dl>
+                                {{ render_field(form.username, class="form-control") }}
+                                {{ render_field(form.password, class="form-control") }}
+                                {{ render_field(form.remember, class="form-check-input") }}
+                            </dl>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                        <br>
+                        <h5>Don't have an account yet?</h5>
+                        <form action={{ url_for("auth.signup") }}>
+                            <button type="submit" class="btn btn-danger">Sign up here</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
+
+        {#        <img src="{{ url_for('static', filename='img/auth_login_background.jpg') }}">#}
+
     </div>
 {% endblock %}
 
@@ -44,3 +69,5 @@
 {#{% endblock %}#}
 
 {#Nanti add function balik#}
+{##}
+{#style="background-image: url({{ url_for('static', filename='img/auth_login_background.jpg') }})"#}

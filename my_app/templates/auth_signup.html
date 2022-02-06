@@ -2,10 +2,10 @@
 {% set title = 'Sign up' %}
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
-    <h2>Sign up form</h2>
     <br>
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem; margin: auto">
         <div class="card-body">
+            <h2>Sign up form</h2>
             <form method="POST" action="{{ url_for('auth.signup') }}" novalidate>
                 {{ form.csrf_token }}
                 <dl>
