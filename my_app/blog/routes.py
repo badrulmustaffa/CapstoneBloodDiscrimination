@@ -31,6 +31,11 @@ def about():
     return render_template('blog_about.html')
 
 
+@blog_bp.route('/credit')
+def credit():
+    return render_template('blog_credits.html')
+
+
 @blog_bp.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
