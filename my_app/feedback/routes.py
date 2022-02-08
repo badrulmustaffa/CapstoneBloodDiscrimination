@@ -61,6 +61,7 @@ def show(post_id):
     posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
 
     show = Feedback.query.filter_by(id=post_id).one()
+
     form = FeedbackReplyForm()
     replies = FeedbackReply.query.filter_by(feedback_id=post_id).order_by(FeedbackReply.date_posted.desc()).all()
 
