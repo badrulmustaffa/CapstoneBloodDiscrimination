@@ -47,7 +47,6 @@ def reply(name):
         name = current_user.username
 
     posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
-    # replies = FeedbackReply.query.
 
     return render_template('feedback_reply.html', posts=posts, name=name)
 

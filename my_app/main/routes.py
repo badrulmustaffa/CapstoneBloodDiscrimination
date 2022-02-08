@@ -21,3 +21,8 @@ def index(name):
                            message2='Hi Jack',
                            name=name)
 
+@main_bp.route('/dashboard')
+@login_required
+def dashboard():
+
+    return render_template()
