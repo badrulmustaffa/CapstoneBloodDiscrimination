@@ -32,7 +32,7 @@ def about():
 
 @blog_bp.route('/FAQ')
 def faq():
-    return render_template('blog_credits.html')
+    return render_template('blog_faq.html')
 
 
 @blog_bp.route('/credit')
