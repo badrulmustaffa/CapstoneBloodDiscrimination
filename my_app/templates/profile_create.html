@@ -3,7 +3,8 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
     <div class="card" style="width: 100%;">
-        <h2>{{ message }}</h2><br>
+        <div class="card-body">
+                    <h2>{{ message }}</h2><br>
         <h5>Username: {{ username }}</h5>
         <form method="POST" action="" enctype="multipart/form-data">
             {{ form.csrf_token }}
@@ -19,5 +20,7 @@
                 </form>
             {% endif %}
         </form>
+        </div>
+
     </div>
 {% endblock %}
