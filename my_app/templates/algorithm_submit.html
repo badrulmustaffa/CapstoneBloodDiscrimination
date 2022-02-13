@@ -1,8 +1,32 @@
 {% extends 'layout.html' %}
-{% set title = 'Submit Image' %}
+{% set title = 'Blood Registration' %}
 {% from "_formhelpers.html" import render_field %}
+
+
 {% block content %}
+    {#    <form action="{{ url_for('') }}" method="POST" novalidate>#}
+    {#                    {{ form.csrf_token }}#}
+    {#                    <p>#}
+    {#                        {{ render_field(form.name, class="form-control") }}#}
+    {#                    </p>#}
+    {#                    <button type="submit" class="btn btn-primary">Submit</button>#}
+    {#                </form>#}
 
+    <div class="card" style="width: 100%; background-color: lavender">
+        <div style="margin: 10px 10px 10px 10px">
 
+            <h1>Enter Blood sample here</h1>
 
+            <form name="upload" method="post">
+                <label for="kit_id">Kit ID : </label>
+                <input>
+                <br>
+                <label for="img">Select image:</label>
+                <input type="file" id="img" name="img" accept="image/*">
+                <input type="submit">
+
+            </form>
+
+        </div>
+    </div>
 {% endblock %}
