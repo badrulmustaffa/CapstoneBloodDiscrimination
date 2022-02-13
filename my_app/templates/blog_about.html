@@ -2,25 +2,77 @@
 {% set title = 'Blog' %}
 {% block content %}
 
-    <header class="masthead">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <div class="page-heading">
-                        <h1>About Us</h1>
-                        <span class="subheading">This is what we do.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <p>We are a group of students dedicated to create an innovative way of blood testing.</p>
-            </div>
-        </div>
-    </div>
+
+    <h1>About Algorithm</h1>
+    <br>
+
+    <div class="clearfix">
+  <img src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}" class="col-md-6 float-md-end mb-3 ms-md-3" alt="..." width="250" height="250">
+
+  <p>
+    Text explaining about algorithm.
+  </p>
+
+  <p>
+    As you can see the paragraphs gracefully wrap around the floated image. Size of image can be adjusted.
+  </p>
+
+    <p>
+        The image of blood testing machine shown now should be replaced with flowchart of algorithm and changed in the future.
+  </p>
+
+</div>
+
+    <br>
+
+<h1>Meet Our Team!</h1>
+    <br>
+
+
+<div class="container">
+  <div class="row">
+
+      <div class="col">
+          <div class="card" style="width: 21rem;">
+              <img class="card-img-top" src="{{ url_for('static', filename='User profile photo') }}" width="250" height="250">
+              <div class="card-body">
+
+                  <p class="text-center">Professor Lama Hamadeh</p>
+                 <p class="lh-sm">This is a long paragraph written for the specific person/group.</p>
+
+              </div>
+          </div>
+      </div>
+
+
+      <div class="col">
+          <div class="card" style="width: 21rem;">
+              <img class="card-img-top" src="{{ url_for('static', filename='User profile photo') }}" width="250" height="250">
+              <div class="card-body">
+
+                  <p class="text-center"> Web Development Team</p>
+                 <p class="lh-sm">This is a long paragraph written for the specific person/group.</p>
+
+              </div>
+          </div>
+      </div>
+
+
+      <div class="col">
+          <div class="card" style="width: 21rem;">
+              <img class="card-img-top" src="{{ url_for('static', filename='User profile photo') }}" width="250" height="250">
+              <div class="card-body">
+
+                  <p class="text-center">Alternative Algorithm Team</p>
+                 <p class="lh-sm">This is a long paragraph written for the specific person/group.</p>
+
+              </div>
+          </div>
+      </div>
+
+
+  </div>
+</div>
+
 {% endblock %}

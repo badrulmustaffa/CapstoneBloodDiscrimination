@@ -15,9 +15,18 @@ main_bp = Blueprint('main_bp', __name__)
 def index(name):
     if not current_user.is_anonymous:
         name = current_user.username
+
     return render_template('index.html',
                            title='Homepage',
                            message='This page is still empty',
                            message2='Hi Jack',
                            name=name)
 
+
+@main_bp.route('/dashboard')
+@login_required
+def dashboard():
+    if not current_user.is_anonymous:
+        name = current_user.username
+
+    return render_template('main_dashboard.html')

@@ -12,8 +12,4 @@ def submit(name):
     if not current_user.is_anonymous:
         name = current_user.username
 
-    return render_template('index.html',
-                           title='Blood Submit',
-                           message='This page is still empty',
-                           message2='',
-                           name=name)
+    return render_template('algorithm_submit.html')

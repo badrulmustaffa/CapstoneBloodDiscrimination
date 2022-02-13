@@ -3,13 +3,20 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
 
+    <style>
+        .feedback_card {
+            padding-left: 10px;
+            padding-top: 5px;
+        }
+    </style>
+
     <div class="card" style="width: 100%;">
         <div class="row" style="margin-left: 0%">
-            <div class="card col-sm-3" style="background-color:lavender;">
+            <div class="card col-sm-3" style="background-color:lavender; padding: 0%">
                 <div>
                     {% for post in posts %}
                         {% if post.subject == show.subject %}
-                            <div class="post-preview" style="background-color: lavenderblush">
+                            <div class="card post-preview feedback_card" style="background-color: lavenderblush; ">
                                 <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
                                     <h2 class="post-title">
                                         {{ post.subject }}
@@ -20,10 +27,10 @@
                                 </a>
                                 <p class="post-meta">Posted by {{ post.name }}
                                     on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
-                                <hr>
                             </div>
                         {% else %}
-                            <div class="post-preview">
+                            <div class="card post-preview feedback_card"
+                                 style="background-color: rgba(255, 255, 255, 0)">
                                 <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
                                     <h2 class="post-title">
                                         {{ post.subject }}
@@ -34,10 +41,8 @@
                                 </a>
                                 <p class="post-meta">Posted by {{ post.name }}
                                     on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
-                                <hr>
                             </div>
                         {% endif %}
-
                     {% endfor %}
                 </div>
             </div>

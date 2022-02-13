@@ -22,13 +22,22 @@ def index():
 @blog_bp.route('/post/<int:post_id>')
 def post(post_id):
     post = Blogpost.query.filter_by(id=post_id).one()
-
     return render_template('blog_post.html', post=post)
 
 
 @blog_bp.route('/about')
 def about():
     return render_template('blog_about.html')
+
+
+@blog_bp.route('/FAQ')
+def faq():
+    return render_template('blog_faq.html')
+
+
+@blog_bp.route('/credit')
+def credit():
+    return render_template('blog_credits.html')
 
 
 @blog_bp.route('/add', methods=['GET', 'POST'])

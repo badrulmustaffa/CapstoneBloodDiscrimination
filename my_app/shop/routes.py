@@ -23,6 +23,7 @@ def product(name):
 def payment(name):
     if not current_user.is_anonymous:
         name = current_user.username
+
     return render_template('shop_payment.html', name=name)
 
 

@@ -47,7 +47,6 @@ def reply(name):
         name = current_user.username
 
     posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
-    # replies = FeedbackReply.query.
 
     return render_template('feedback_reply.html', posts=posts, name=name)
 
@@ -61,6 +60,7 @@ def show(post_id):
     posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
 
     show = Feedback.query.filter_by(id=post_id).one()
+
     form = FeedbackReplyForm()
     replies = FeedbackReply.query.filter_by(feedback_id=post_id).order_by(FeedbackReply.date_posted.desc()).all()
 
