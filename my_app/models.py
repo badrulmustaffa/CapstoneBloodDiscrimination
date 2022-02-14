@@ -95,10 +95,3 @@ class ShoppingCart(db.Model):
     QuantityA = db.Column(db.Integer)
     QuantityB = db.Column(db.Integer)
 
-
-class ShoppingCart(db.Model):
-    __tablename__ = 'shopping cart'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.Text, nullable=False)
-    QuantityA = db.Column(db.Integer)
-    QuantityB = db.Column(db.Integer)
