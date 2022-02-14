@@ -30,3 +30,11 @@ def dashboard():
         name = current_user.username
 
     return render_template('main_dashboard.html')
+
+@main_bp.route('/dashboard')
+@login_required
+def dashboard():
+    if not current_user.is_anonymous:
+        name = current_user.username
+
+    return render_template('main_dashboard.html')

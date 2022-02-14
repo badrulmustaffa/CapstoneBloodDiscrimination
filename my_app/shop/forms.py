@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, EqualTo, ValidationError
 from my_app.models import User
 
 
-class ShoppingCartForm(FlaskForm):
+class ShoppingCart(FlaskForm):
     username = StringField('Name')
     QuantityA = IntegerField('Product A amount')
     QuantityB = IntegerField('Product B amount')
