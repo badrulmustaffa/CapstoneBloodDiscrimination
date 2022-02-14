@@ -64,7 +64,7 @@ class Forum(db.Model):
 class Feedback(db.Model):
     __tablename__ = "feedback"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text, unique=True, nullable=False)
+    name = db.Column(db.Text, nullable=False)
     email = db.Column(db.Text)
     subject = db.Column(db.Text)
     message = db.Column(db.Text)
@@ -86,3 +86,12 @@ class Trial(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     registration_number = db.Column(db.Text)
     date = db.Column(db.DateTime)
+
+
+class ShoppingCart(db.Model):
+    __tablename__ = 'shopping cart'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text, nullable=False)
+    QuantityA = db.Column(db.Integer)
+    QuantityB = db.Column(db.Integer)
+

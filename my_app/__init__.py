@@ -34,7 +34,7 @@ def create_app(config_classname):
 
     with app.app_context():
         # Import User
-        from my_app.models import User, Profile, History, Blogpost, Forum, Feedback, Trial
+        from my_app.models import User, Profile, History, Blogpost, Forum, Feedback, Trial, ShoppingCart
         db.create_all()
 
         # Import Dash application

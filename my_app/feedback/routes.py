@@ -1,4 +1,4 @@
-# Done by Muhammad Mustaffa and Manuchimso Opara
+# Done by Muhammad Mustaffa
 
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user
@@ -42,13 +42,12 @@ def post():
 @feedback_bp.route('/reply', defaults={'name': 'traveler'})
 @login_required
 def reply(name):
-    # reply = FeedbackReply.query.join(Feedback)
     if not current_user.is_anonymous:
         name = current_user.username
 
     posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
 
-    return render_template('feedback_reply.html', posts=posts, name=name)
+    return redirect(url_for('feedback_bp.show', post_id=len(posts)))
 
 
 @feedback_bp.route('/show/<int:post_id>', methods=['GET', 'POST'])
@@ -58,12 +57,10 @@ def show(post_id):
         name = current_user.username
 
     posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
-
     show = Feedback.query.filter_by(id=post_id).one()
-
-    form = FeedbackReplyForm()
     replies = FeedbackReply.query.filter_by(feedback_id=post_id).order_by(FeedbackReply.date_posted.desc()).all()
 
+    form = FeedbackReplyForm()
     if form.validate_on_submit():
         feedbackreply = FeedbackReply(reply=form.reply.data,
                                       date_posted=datetime.now(),

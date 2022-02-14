@@ -30,3 +30,19 @@ def dashboard():
         name = current_user.username
 
     return render_template('main_dashboard.html')
+
+
+@main_bp.route('/about')
+def about():
+    return render_template('blog_about.html')
+
+
+@main_bp.route('/FAQ')
+def faq():
+    return render_template('blog_faq.html')
+
+
+@main_bp.route('/credit')
+def credit():
+    return render_template('blog_credits.html')
+

@@ -29,18 +29,21 @@
                     <table style="width:100%">
                         <tr>
                             <td>
-                                <div class="card-header h4 p-3 mb-2 text-white rounded"
-                                     style="background-color: #e44d44">
+                                <div class="card-header h4 p-3 mb-2 text-dark rounded"
+                                     style="background-color: pink">
                                     User's detail
                                     {% if profile.username == current_user.username %}
                                         <form style="float:right; margin-top: -7px"
                                               action="{{ url_for("community_bp.update_profile") }}">
-                                            <button type="submit" class="btn btn-primary">Edit profile</button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <img src="{{ url_for('static', filename='img/edit.png') }}"
+                                                style="width: 20px; filter: invert(1)">
+                                                Edit profile</button>
                                         </form>
                                     {% endif %}
                                 </div>
 
-                                <div class="card-body" style="background-color: #f6c9c7">
+                                <div class="card-body rounded" style="background-color: lavenderblush">
                                     <table>
                                         <tr>
                                             <td style="width: 200px"><h5 class="card-text">Username</h5></td>
@@ -63,18 +66,18 @@
                                 <br>
 
                                 <div>
-                                    <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">Test
+                                    <div class="h4 p-3 mb-2 text-dark rounded" style="background-color: pink">Test
                                         History
                                     </div>
-                                    <div class="card-body" style="background-color: #f6c9c7">
+                                    <div class="card-body rounded" style="background-color: lavenderblush">
                                         <table class="table table-bordered table-sm">
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Time</th>
-                                                    <th>Kit ID</th>
-                                                    <th>Image</th>
-                                                    <th>Result</th>
-                                                </tr>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Kit ID</th>
+                                                <th>Image</th>
+                                                <th>Result</th>
+                                            </tr>
 
                                             {% for user_id in history %}
                                                 <tr>
@@ -98,18 +101,18 @@
                                 <br>
 
                                 <div>
-                                    <div class="h4 p-3 mb-2 text-white rounded" style="background-color: #e44d44">
+                                    <div class="h4 p-3 mb-2 text-dark rounded" style="background-color: pink">
                                         Purchase history
                                     </div>
-                                    <div class="card-body" style="background-color: #f6c9c7">
+                                    <div class="card-body rounded" style="background-color: lavenderblush">
                                         <table class="table table-bordered table-sm">
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Time</th>
-                                                    <th>Order number</th>
-                                                    <th>Item</th>
-                                                    <th>Price</th>
-                                                </tr>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Order number</th>
+                                                <th>Item</th>
+                                                <th>Price</th>
+                                            </tr>
 
                                             {% for user_id in history %}
                                                 <tr>

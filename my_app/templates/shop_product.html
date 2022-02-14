@@ -5,46 +5,80 @@
     <h1>SHOP</h1>
     <br>
     <h4>Order Yours Now!</h4>
+
+    <div class = "col-sm-12">
+    {%  if 'cart_item' in session %}
+        <p><a id="btnEmpty" href="{{ url_for('.empty_cart') }}" class="btn btn-danger">Empty cart</a></p>
+    {% else: %}
+        <div class="no-records">Your cart is empty</div>
+    {% endif %}
+    </div>
+
     <br>
 
-<div class="container">
-    <div class="row">
+        <div class="container">
+            <div class="row">
 
-         <div class="col">
-              <div class="card" style="width: 25rem;">
-                   <img class="card-img-top" src="{{ url_for('static', filename='img/blood-kit-550.png') }}" width="300" height="300">
-                   <div class="card-body">
-                                <br>
-                                <dl class="row">
+                <div class="col">
+                    <div class="card" style="width: 25rem;">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/blood-kit-550.png') }}"
+                             width="300" height="300">
+                        <div class="card-body">
+                            <br>
+                            <dl class="row">
                                 <dt class="col-sm-3">Item</dt>
                                 <dd class="col-sm-9">Blood Test Kit</dd>
 
                                 <dt class="col-sm-3">Price</dt>
                                 <dd class="col-sm-9">
-                                <p>$5</p>
-                                <input class="btn btn-primary" type="submit" value="Order">
-                   </div>
-              </div>
-         </div>
+                                    <p>$5</p>
+                                    <div class="add-to-cart">
+                                        <form method="POST" action ="{{ url_for('shop_bp.add_product_to_cart') }}" >
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+{#                                        <input type="hidden" name="code" value="test_kit"/>#}
+{#                                        <input type="hidden" name="price" value = "5"/>#}
+                                        <input type="text" class="QuantityA" value="1" size="2"/>
+                                            <input type="submit" name = 'action' value="Add to cart" class="default-btn"/>
+                                        </form>
+                                    </div>
 
-                      <div class="col">
-                           <div class="card" style="width: 25rem;">
-                                <img class="card-img-top" src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}" width="300" height="300">
-                                <div class="card-body">
-                                             <br>
-                                             <dl class="row">
-                                             <dt class="col-sm-3">Item</dt>
-                                             <dd class="col-sm-9">Blood Test Machine</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
 
-                                             <dt class="col-sm-3">Price</dt>
-                                             <dd class="col-sm-9">
-                                             <p>$100</p>
-                                             <input class="btn btn-primary" type="submit" value="Order">
-                                </div>
-                           </div>
-                      </div>
+                <div class="col">
+                    <div class="card" style="width: 25rem;">
+                        <img class="card-img-top"
+                             src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}"
+                             width="300"
+                             height="300">
+                        <div class="card-body">
+                            <br>
+                            <dl class="row">
+                                <dt class="col-sm-3">Item</dt>
+                                <dd class="col-sm-9">Blood Test Machine</dd>
 
-    </div>
-</div>
+                                <dt class="col-sm-3">Price</dt>
+                                <dd class="col-sm-9">
+                                    <p>$100</p>
+                                    <div class="add-to-cart">
+                                        <form method="POST" action ="{{ url_for('shop_bp.add_product_to_cart') }}" >
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+{#                                         <input type="hidden" name="code" value="test_machine"/>#}
+{#                                        <input type="hidden" name="price" value = "100"/>#}
+                                        <input type="text" class="QuantityB" value="1" size="2"/>
+                                            <input type="submit" name = 'action' value="Add to cart" class="default-btn"/>
+                                        </form>
+
+                            </dl>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
 
 {% endblock %}
