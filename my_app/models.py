@@ -87,6 +87,13 @@ class Trial(db.Model):
     registration_number = db.Column(db.Text)
     date = db.Column(db.DateTime)
 
+class Tester(db.Model):
+    __tablename__ = "tester"
+    id = db.Column(db.Integer, primary_key=True)
+    kit_id = db.Column(db.Integer)
+    blood_image = db.Column(db.Text)
+    result = db.Column(db.Text)
+
 
 class ShoppingCart(db.Model):
     __tablename__ = 'shopping cart'

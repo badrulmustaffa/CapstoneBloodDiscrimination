@@ -12,6 +12,7 @@ class Config(object):
 
     # For photo upload
     UPLOADED_PHOTOS_DEST = Path(__file__).parent.parent.joinpath("data").joinpath("user")
+    UPLOADED_IMAGES_DEST = Path(__file__).parent.parent.joinpath("data").joinpath("blood_images")
 
 
 class ProductionConfig(Config):
