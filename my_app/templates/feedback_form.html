@@ -3,10 +3,9 @@
 {% from "_formhelpers.html" import render_field %}
 
 {% block content %}
-    <div class="card" style="width: 100%; background-color: lavender">
-        <div style="margin: 10px 10px 10px 10px">
+    <div class="card" style="width: 50%; background-color: lavender; margin: auto">
+        <div class="card-body">
             <h1>Feedback Form</h1>
-
             <!--  <form action="/post" method="POST" novalidate> -->
             <form action="{{ url_for('feedback_bp.post') }}" method="POST" novalidate>
                 {{ form.csrf_token }}

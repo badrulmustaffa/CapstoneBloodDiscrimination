@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <form name="addForm" id="addForm" method="POST" action="{{ url_for('blog_bp.add') }}" enctype="multipart/form-data">
+                <form name="addForm" id="addForm" method="POST" action="{{ url_for('news_bp.add_news') }}" enctype="multipart/form-data">
                     {{ form.csrf_token }}
                     <dl>
                         {{ render_field(form.title, class="form-control") }}

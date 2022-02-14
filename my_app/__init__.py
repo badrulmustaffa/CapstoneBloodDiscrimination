@@ -55,8 +55,8 @@ def create_app(config_classname):
     from my_app.feedback.routes import feedback_bp
     app.register_blueprint(feedback_bp)
 
-    from my_app.blog.routes import blog_bp
-    app.register_blueprint(blog_bp)
+    from my_app.blog.routes import news_bp
+    app.register_blueprint(news_bp)
 
     from my_app.shop.routes import shop_bp
     app.register_blueprint(shop_bp)
