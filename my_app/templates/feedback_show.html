@@ -11,94 +11,88 @@
     </style>
 
     <div class="card" style="width: 100%;">
-        <div class="row" style="margin-left: 0%">
-            <div class="card col-sm-3" style="background-color:lavender; padding: 0%">
-                <div>
-                    {% for post in posts %}
-                        {% if post.id == show.id %}
-                            <div class="card post-preview feedback_card" style="background-color: lavenderblush; ">
-                                <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
-                                    <h2 class="post-title">
-                                        {{ post.subject }}
-                                    </h2>
-                                    <h5 class="post-subtitle">
-                                        {{ post.message }}
-                                    </h5>
-                                </a>
-                                <p class="post-meta">Posted by {{ post.name }}
-                                    on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
-                            </div>
-                        {% else %}
-                            <div class="card post-preview feedback_card"
-                                 style="background-color: rgba(255, 255, 255, 0)">
-                                <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
-                                    <h2 class="post-title">
-                                        {{ post.subject }}
-                                    </h2>
-                                    <h5 class="post-subtitle">
-                                        {{ post.message }}
-                                    </h5>
-                                </a>
-                                <p class="post-meta">Posted by {{ post.name }}
-                                    on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="card col-sm-9" style="background-color:lavenderblush;">
-                <div>
-                    <div class="card post-heading" style="background-color:pink; margin-top: 10px">
-                        <div style="margin-left: 10px">
-                            <h1>{{ show.subject }}</h1>
-                            <p class="subheading">Comment: {{ show.message }}</p>
-                            <p class="meta">Posted by {{ show.name }}
-                                on {{ show.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
-                        </div>
-                    </div>
-
+        {% if posts %}
+            <div class="row" style="margin-left: 0%">
+                <div class="card col-sm-3" style="background-color:lavender; padding: 0%">
                     <div>
-                        <h5>Replies:</h5>
-                        {% for reply in replies %}
-                            <div class="card" style="margin-left: 30px; background-color:lightpink">
-                                <div style="margin-left: 10px">
-                                    <p>{{ reply.reply }}</p>
-                                    <p>by {{ reply.username }}
-                                        on {{ reply.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                        {% for post in posts %}
+                            {% if post.id == show.id %}
+                                <div class="card post-preview feedback_card" style="background-color: lavenderblush; ">
+                                    <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
+                                        <h2 class="post-title">
+                                            {{ post.subject }}
+                                        </h2>
+                                        <h5 class="post-subtitle">
+                                            {{ post.message }}
+                                        </h5>
+                                    </a>
+                                    <p class="post-meta">Posted by {{ post.name }}
+                                        on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
                                 </div>
-                            </div>
-
+                            {% else %}
+                                <div class="card post-preview feedback_card"
+                                     style="background-color: rgba(255, 255, 255, 0)">
+                                    <a href="{{ url_for('feedback_bp.show', post_id=post.id) }}">
+                                        <h2 class="post-title">
+                                            {{ post.subject }}
+                                        </h2>
+                                        <h5 class="post-subtitle">
+                                            {{ post.message }}
+                                        </h5>
+                                    </a>
+                                    <p class="post-meta">Posted by {{ post.name }}
+                                        on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
+                </div>
 
-                    <br>
+                <div class="card col-sm-9" style="background-color:lavenderblush;">
                     <div>
-                        <form class="form-inline" style="margin-left: 30px" method="POST" action="">
-                            <dl>
-                                {{ form.csrf_token }}
-                                {{ render_field(form.reply, class="form-control") }}
-                            </dl>
-                            <button type="submit" class="btn btn-primary">Post</button>
-                            <button type="reset" class="btn btn-primary">Cancel</button>
-                        </form>
+                        <div class="card post-heading" style="background-color:pink; margin-top: 10px">
+                            <div style="margin-left: 10px">
+                                <h1>{{ show.subject }}</h1>
+                                <p class="subheading">Comment: {{ show.message }}</p>
+                                <p class="meta">Posted by {{ show.name }}
+                                    on {{ show.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h5>Replies:</h5>
+                            {% for reply in replies %}
+                                <div class="card" style="margin-left: 30px; background-color:lightpink">
+                                    <div style="margin-left: 10px">
+                                        <p>{{ reply.reply }}</p>
+                                        <p>by {{ reply.username }}
+                                            on {{ reply.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+
+                        <br>
+                        <div>
+                            <form class="form-inline" style="margin-left: 30px" method="POST" action="">
+                                <dl>
+                                    {{ form.csrf_token }}
+                                    {{ render_field(form.reply, class="form-control") }}
+                                </dl>
+                                <button type="submit" class="btn btn-primary">Post</button>
+                                <button type="reset" class="btn btn-primary">Cancel</button>
+                            </form>
+                        </div>
+                        <hr>
                     </div>
-                    <hr>
                 </div>
             </div>
-        </div>
 
-
-        <table>
-            <tr>
-                <td>
-
-                </td>
-
-                <td>
-
-                </td>
-            </tr>
-        </table>
+        {% else %}
+            <div class="card-body">
+                <h2>There is no feedback yet!</h2>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

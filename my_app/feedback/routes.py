@@ -42,7 +42,6 @@ def post():
 @feedback_bp.route('/reply', defaults={'name': 'traveler'})
 @login_required
 def reply(name):
-    # reply = FeedbackReply.query.join(Feedback)
     if not current_user.is_anonymous:
         name = current_user.username
 
