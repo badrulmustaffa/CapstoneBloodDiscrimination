@@ -15,17 +15,13 @@
 {#    </div>#}
 
     <div class="'col-sm-12">
-        {% if cart %}
-            {% for username in cart %}
-                {% if cart.username == name %}
-                    <h5>Items added to your cart</h5>
-                    <h6>{{ cart.QuantityA }}</h6>
-                    <h6>{{ cart.QuantityB }}</h6>
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <div class="no-records">Your cart is empty???njir?gimana sih mau keluarkan cart itu</div>
-        {% endif %}
+    {% if cart %}
+    <h5>{{ cart.username }}</h5>
+    {{ cart.QuantityA }}
+    {{ cart.QuantityB }}
+    {% else %}
+    <div class="no-records">Your cart is empty????</div>
+    {% endif %}
     </div>
 
     <br>
@@ -51,7 +47,7 @@
                                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 {#                                        <input type="hidden" name="code" value="test_kit"/>#}
 {#                                        <input type="hidden" name="price" value = "5"/>#}
-                                        <input type="text" class="QuantityA" value="0" size="2"/>
+                                        <input type="text" class="QuantityA" value="1" size="2"/>
                                             <input type="submit" name = 'action' value="Add to cart" class="default-btn"/>
                                         </form>
                                     </div>
@@ -81,7 +77,7 @@
                                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 {#                                         <input type="hidden" name="code" value="test_machine"/>#}
 {#                                        <input type="hidden" name="price" value = "100"/>#}
-                                        <input type="text" class="QuantityB" value="0" size="2"/>
+                                        <input type="text" class="QuantityB" value="1" size="2"/>
                                             <input type="submit" name = 'action' value="Add to cart" class="default-btn"/>
                                         </form>
 

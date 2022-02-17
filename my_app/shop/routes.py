@@ -1,3 +1,5 @@
+import sqlite3
+
 from flask import Blueprint, render_template, request, session, flash, redirect, url_for
 from flask_login import login_required, current_user
 from datetime import datetime
@@ -30,8 +32,11 @@ def payment(name):
 @shop_bp.route('/addcart', methods=['GET', 'POST'])
 def add_product_to_cart():
     form = ShoppingCartForm()
+
     if not current_user.is_anonymous:
         name = current_user.username
+
+    cart = ShoppingCart.query.order_by(ShoppingCart.username.desc()).all()
 
     if request.method == 'POST' and form.validate():
         addtocart = ShoppingCart(username=name, QuantityA=form.QuantityA.data, QuantityB=form.QuantityB.data)
@@ -41,4 +46,4 @@ def add_product_to_cart():
         flash('Item added to your Shopping Cart!')
         return redirect(url_for('shop_bp.product'))
 
-    return redirect(url_for('shop_bp.product'))
+    return render_template('shop_product.html', cart=cart, form=form, name=name)
