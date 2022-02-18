@@ -17,6 +17,6 @@ def submit(name):
 
         db.session.add(registration)
         db.session.commit()
-        return redirect(url_for('community_bp.view_profile'))
+        return redirect(url_for('algorithm_bp.tester'))
 
     return render_template('algorithm_submit.html', entry=form)
