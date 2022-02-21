@@ -8,3 +8,5 @@ from my_app import photos
 
 class TesterForm(FlaskForm):
     kit_code = TextAreaField(label='Kit ID', description='Enter here', widget=TextArea())
+    blood_image = FileField('Blood Sample', validators=[FileAllowed(photos, 'Images only!')])
+    # result =
