@@ -26,10 +26,13 @@ class User(UserMixin, db.Model):
 class Profile(db.Model):
     __tablename__ = "profile"
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     username = db.Column(db.Text, unique=True, nullable=False)
     bio = db.Column(db.Text)
     photo = db.Column(db.Text)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    sex = db.Column(db.String(20))
+    conditions = db.Column(db.Text)
+    date = db.Column(db.DateTime)
 
 
 class History(db.Model):
@@ -87,6 +90,7 @@ class Trial(db.Model):
     registration_number = db.Column(db.Text)
     date_posted = db.Column(db.DateTime)
 
+
 class Tester(db.Model):
     __tablename__ = "tester"
     id = db.Column(db.Integer, primary_key=True)
@@ -102,4 +106,6 @@ class ShoppingCart(db.Model):
     username = db.Column(db.Text, nullable=False)
     QuantityA = db.Column(db.Integer)
     QuantityB = db.Column(db.Integer)
+
+
 

@@ -3,10 +3,10 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, send_from_directory
 from flask_login import login_required, current_user
 from pathlib import Path
-
+from datetime import datetime
 import my_app.config
 from my_app import db, photos
-from my_app.community.forms import ProfileForm, HealthForm
+from my_app.community.forms import ProfileForm
 from my_app.models import Profile, User, History
 from my_app.config import Config
 
@@ -40,6 +40,20 @@ def profile():
 @login_required
 def create_profile():
     form = ProfileForm()
+    choices = ['High Blood Pressure', 'History of Heart Attack',
+               'Coronary Artery Disease',
+               'Undiagnosed Chest Pain', 'Shortness of Breath', 'Irregular Heartbeart',
+               'Artificial Heart Valve', 'Peripheral Vascular Disease',
+               'Congestive Heart Failure',
+               'Diabetes', 'Kidney Disease', 'Cancer', 'Epilepsy/Seizure',
+               'Mental Illness',
+               'Emphysema', 'Asthma', 'Chronic Cough', 'Heart Murmur', 'Wheezing',
+               'Stroke', 'High Cholestrol',
+               'Thyroid Disease', 'Seasonal Allergies', 'Bleeding/Clotting Disorder',
+               'Varicose Veins',
+               'Gastrointestinal Disease', 'Liver Disease/Hepatitis', 'HIV',
+               'History of Covid']
+
     if request.method == 'POST' and form.validate_on_submit():
         # Set photo name to default if no photos attached
         filename = 'default.png'
@@ -50,24 +64,40 @@ def create_profile():
                 # Save to photos in my_app
                 filename = photos.save(request.files['photo'])
 
+        conditions = ', '.join([str(item) for item in request.form.getlist('check')])
+
+        if form.other.data:
+            conditions += ", "+form.other.data
+
         # Create a profile for database
-        profile = Profile(photo=filename, bio=form.bio.data,
-                          username=current_user.username,
-                          user_id=current_user.id)
+        profile = Profile(photo=filename, bio=form.bio.data, sex=form.sex.data,
+                          username=current_user.username, date=datetime.now(),
+                          user_id=current_user.id, conditions=conditions)
         db.session.add(profile)
         db.session.commit()
         return redirect(
             url_for('community_bp.view_profile', username=profile.username))
 
-    return render_template('profile_create.html', form=form,
-                           username=current_user.username,
-                           message='New profile')
+    return render_template('profile_create.html', form=form, choices=choices,
+                           username=current_user.username)
 
 
 @community_bp.route('/update_profile', methods=['GET', 'POST'])
 @login_required
 def update_profile():
-    # profile = Profile.Query
+    choices = ['High Blood Pressure', 'History of Heart Attack',
+               'Coronary Artery Disease',
+               'Undiagnosed Chest Pain', 'Shortness of Breath', 'Irregular Heartbeart',
+               'Artificial Heart Valve', 'Peripheral Vascular Disease',
+               'Congestive Heart Failure',
+               'Diabetes', 'Kidney Disease', 'Cancer', 'Epilepsy/Seizure',
+               'Mental Illness',
+               'Emphysema', 'Asthma', 'Chronic Cough', 'Heart Murmur', 'Wheezing',
+               'Stroke', 'High Cholestrol',
+               'Thyroid Disease', 'Seasonal Allergies', 'Bleeding/Clotting Disorder',
+               'Varicose Veins',
+               'Gastrointestinal Disease', 'Liver Disease/Hepatitis', 'HIV',
+               'History of Covid']
     profile = Profile.query.join(User).filter_by(id=current_user.id).first()
     form = ProfileForm(obj=profile)  # Prepopulate
     if request.method == 'POST' and form.validate_on_submit():
@@ -77,13 +107,21 @@ def update_profile():
                 # Update the saved photos in my_app
                 filename = photos.save(request.files['photo'])
 
+        conditions = ', '.join([str(item) for item in request.form.getlist('check')])
+        if form.other.data:
+            conditions += ", "+form.other.data
+
         # Update other detail
         profile.bio = form.bio.data
         profile.photo = filename
+        profile.sex = form.sex.data
+        profile.conditions = conditions
+        profile.date = datetime.now()
+
         db.session.commit()
         return redirect(url_for('community_bp.view_profile', username=profile.username))
     return render_template('profile_create.html', form=form, username=profile.username,
-                           message='Profile update')
+                           choices=choices)
 
 
 @community_bp.route('/view_profile', methods=['GET', 'POST'])
@@ -114,7 +152,7 @@ def health_form(username=None):
 
     choices = ['High Blood Pressure', 'History of Heart Attack',
                'Coronary Artery Disease',
-               'Undiagnosed Chest Pain', 'Shortness of Breath', 'Irregular Heartbear',
+               'Undiagnosed Chest Pain', 'Shortness of Breath', 'Irregular Heartbeart',
                'Artificial Heart Valve', 'Peripheral Vascular Disease',
                'Congestive Heart Failure',
                'Diabetes', 'Kidney Disease', 'Cancer', 'Epilepsy/Seizure',
@@ -126,8 +164,13 @@ def health_form(username=None):
                'Gastrointestinal Disease', 'Liver Disease/Hepatitis', 'HIV',
                'History of Covid']
 
-
     form = HealthForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        conditions = request.form.getlist('check')
+        flash(str(conditions))
+        return redirect(url_for('community_bp.view_profile'))
+
     return render_template('profile_healthform.html', form=form, choices=choices)
 
 

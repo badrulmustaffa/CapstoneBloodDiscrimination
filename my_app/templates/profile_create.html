@@ -4,13 +4,24 @@
 {% block content %}
     <div class="card" style="width: 100%;">
         <div class="card-body">
-                    <h2>{{ message }}</h2><br>
         <h5>Username: {{ username }}</h5>
         <form method="POST" action="" enctype="multipart/form-data">
             {{ form.csrf_token }}
             <dl>
                 {{ render_field(form.bio, class="form-control") }}
                 {{ render_field(form.photo, class="custom-file", id="input_file") }}
+                {{ render_field(form.sex, class="form-control") }}
+                <div class="btn-group-toggle" data-toggle="buttons" style="margin-top: 3px;margin-bottom: 3px">
+                <h6>Please select if you have any of these health conditions:</h6>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    {% for condition in choices %}
+                        <input type="checkbox" class="btn-check" id="{{ condition }}"
+                               autocomplete="off" name="check"
+                               value="{{ condition }}">
+                        <label class="btn btn-outline-secondary" for="{{ condition }}" style="margin: 2px">{{ condition }}</label>
+                    {% endfor %}
+                </div><br>
+                {{ render_field(form.other, class="form-control") }}
             </dl>
             <br>
             <button type="submit" class="btn btn-primary">Save</button>

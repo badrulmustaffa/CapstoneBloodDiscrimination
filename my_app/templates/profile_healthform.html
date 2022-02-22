@@ -2,7 +2,7 @@
 {% set title = 'Profile Display' %}
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
- <div class="card" style="width: 50%; background-color: lavender; margin: auto">
+    <div class="card" style="width: 50%; background-color: lavender; margin: auto">
         <div class="card-body">
             <h1>Health Form</h1>
             <!--  <form action="/post" method="POST" novalidate> -->
@@ -10,18 +10,26 @@
                 {{ form.csrf_token }}
                 <p>
                     {{ render_field(form.sex, class="form-control") }}
-
                 <div class="btn-group-toggle" data-toggle="buttons">
-                {% for condition in choices %}
-                    <buttons type="checkbox" class="btn btn-outline-secondary">{{ condition }}</buttons>
-                {% endfor %}
+                <h6>Please select if you have any of these health conditions:</h6>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    {% for condition in choices %}
+                        <input type="checkbox" class="btn-check" id="{{ condition }}"
+                               autocomplete="off" name="check"
+                               value="{{ condition }}">
+                        <label class="btn btn-outline-secondary" for="{{ condition }}" style="margin: 2px">{{ condition }}</label>
+                    {% endfor %}
                 </div>
-
-                    {{ render_field(form.othercondition, class="form-control") }}
+                {{ render_field(form.other, class="form-control") }}
                 </p>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
+    <script>
+
+
+    </script>
+
 
 {% endblock %}
