@@ -8,5 +8,5 @@ from my_app.models import User
 
 class ShoppingCartForm(FlaskForm):
     username = StringField('Name')
-    QuantityA = IntegerField('Product A amount')
-    QuantityB = IntegerField('Product B amount')
+    QuantityA = IntegerField('Blood Test Kit')
+    QuantityB = IntegerField('Blood Test Machine')
