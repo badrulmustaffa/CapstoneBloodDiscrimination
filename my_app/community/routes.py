@@ -6,7 +6,7 @@ from pathlib import Path
 
 import my_app.config
 from my_app import db, photos
-from my_app.community.forms import ProfileForm
+from my_app.community.forms import ProfileForm, HealthForm
 from my_app.models import Profile, User, History
 from my_app.config import Config
 
@@ -86,33 +86,6 @@ def update_profile():
                            message='Profile update')
 
 
-# @community_bp.route('/display_profiles', methods=['GET', 'POST'])
-# @community_bp.route('/display_profiles/<username>', methods=['POST', 'GET'])
-# @login_required
-# def display_profiles(username=None)
-#     results = None
-#     if username is None:
-#         if request.method == 'POST':
-#             term = request.form['search_term']
-#             if term == "":
-#                 flash("Enter a name to search for")
-#                 return redirect(url_for('community_bp.index'))
-#             results = Profile.query.filter(Profile.username.contains(term)).all()
-#     else:
-#         term = username
-#         results = Profile.query.filter(Profile.username.contains(term)).all()
-#     if not results:
-#         flash("Username not found")
-#         return redirect(url_for('community_bp.index'))
-#
-#     urls = []
-#     for result in results:
-#         if result.photo:
-#             url = photos.url(result.photo)
-#             urls.append(url)
-#     return render_template('profile_display.html', profiles=zip(results, urls))
-
-
 @community_bp.route('/view_profile', methods=['GET', 'POST'])
 @community_bp.route('/view_profile/<username>', methods=['POST', 'GET'])
 @login_required
@@ -124,19 +97,38 @@ def view_profile(username=None):
     profile = Profile.query.filter_by(username=username).one()
     history = History.query.filter_by(user_id=current_user.id).all()
 
-    # falsk-Reupload method
-    # url = photos.url(profile.photo)
-
-    # Using static method
-    # filename = 'img/' + profile.photo
-    # url = url_for('static', filename=filename)
-    # # url = photos.url('default.png')
-
     return render_template('profile_view.html', profile=profile, usertype=type, history=history)
 
 
 @community_bp.route('/profile_picture/<filename>')
 def profile_picture(filename):
     return send_from_directory(Config.UPLOADED_PHOTOS_DEST, '/user', filename=filename, as_attachment=True)
+
+
+@community_bp.route('/health_form', methods=['GET', 'POST'])
+@community_bp.route('/health_form/<username>', methods=['GET', 'POST'])
+@login_required
+def health_form(username=None):
+    if username is None:
+        username = current_user.username
+
+    choices = ['High Blood Pressure', 'History of Heart Attack',
+               'Coronary Artery Disease',
+               'Undiagnosed Chest Pain', 'Shortness of Breath', 'Irregular Heartbear',
+               'Artificial Heart Valve', 'Peripheral Vascular Disease',
+               'Congestive Heart Failure',
+               'Diabetes', 'Kidney Disease', 'Cancer', 'Epilepsy/Seizure',
+               'Mental Illness',
+               'Emphysema', 'Asthma', 'Chronic Cough', 'Heart Murmur', 'Wheezing',
+               'Stroke', 'High Cholestrol',
+               'Thyroid Disease', 'Seasonal Allergies', 'Bleeding/Clotting Disorder',
+               'Varicose Veins',
+               'Gastrointestinal Disease', 'Liver Disease/Hepatitis', 'HIV',
+               'History of Covid']
+
+
+    form = HealthForm()
+    return render_template('profile_healthform.html', form=form, choices=choices)
+
 
 

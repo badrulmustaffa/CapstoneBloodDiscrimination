@@ -1,8 +1,8 @@
 # Done by Muhammad Mustaffa and Manuchimso Opara
 
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, TextAreaField, SelectField, StringField
-from wtforms.fields.html5 import EmailField
+from wtforms import SubmitField, TextAreaField, SelectField, StringField, EmailField
+# from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired
 from wtforms.widgets import TextArea
 
