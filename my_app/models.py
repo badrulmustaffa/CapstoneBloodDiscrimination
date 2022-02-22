@@ -98,8 +98,8 @@ class Tester(db.Model):
 
 class ShoppingCart(db.Model):
     __tablename__ = 'shopping cart'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.Text, nullable=False)
+    id = db.Column(db.Integer)
+    username = db.Column(db.Text, nullable=False, primary_key=True)
     QuantityA = db.Column(db.Integer)
     QuantityB = db.Column(db.Integer)
 
