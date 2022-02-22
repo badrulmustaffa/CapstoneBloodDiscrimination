@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% set title = 'Profile Display' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+ <div class="card" style="width: 50%; background-color: lavender; margin: auto">
+        <div class="card-body">
+            <h1>Health Form</h1>
+            <!--  <form action="/post" method="POST" novalidate> -->
+            <form action="{{ url_for('community_bp.health_form') }}" method="POST">
+                {{ form.csrf_token }}
+                <p>
+                    {{ render_field(form.sex, class="form-control") }}
+
+                <div class="btn-group-toggle" data-toggle="buttons">
+                {% for condition in choices %}
+                    <buttons type="checkbox" class="btn btn-outline-secondary">{{ condition }}</buttons>
+                {% endfor %}
+                </div>
+
+                    {{ render_field(form.othercondition, class="form-control") }}
+                </p>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

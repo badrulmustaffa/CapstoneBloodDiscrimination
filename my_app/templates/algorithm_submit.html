@@ -12,14 +12,14 @@
             <h1>Enter Blood sample here</h1>
 
             <form method="POST" action="" enctype="multipart/form-data">
-{#            <form name="upload" method="post">#}
                 {{ entry.csrf_token }}
                 <p>
                 {{ render_field(entry.kit_code, class="form-control") }}<br>
-                <label for="img">Select image:</label>
-                <input type="file" id="img" name="img" accept="image/*">
-                <input type="submit">
+                {{ render_field(entry.blood_image, class="custom-file", id="input_file") }}
                 </p>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
             </form>
 
         </div>
