@@ -37,8 +37,9 @@
                                               action="{{ url_for("community_bp.update_profile") }}">
                                             <button type="submit" class="btn btn-primary">
                                                 <img src="{{ url_for('static', filename='img/edit.png') }}"
-                                                style="width: 20px; filter: invert(1)">
-                                                Edit profile</button>
+                                                     style="width: 20px; filter: invert(1)">
+                                                Edit profile
+                                            </button>
                                         </form>
                                     {% endif %}
                                 </div>
@@ -51,14 +52,24 @@
                                             <td><h6 class="card-text">{{ profile.username }}</h6></td>
                                         </tr>
                                         <tr>
+                                            <td><h5 class="card-text">Account type</h5></td>
+                                            <td><h5 class="card-text">:</h5></td>
+                                            <td><h6 class="card-text">{{ usertype }}</h6></td>
+                                        </tr>
+                                        <tr>
                                             <td><h5 class="card-text">Bio</h5></td>
                                             <td><h5 class="card-text">:</h5></td>
                                             <td><h6 class="card-text">{{ profile.bio }}</h6></td>
                                         </tr>
                                         <tr>
-                                            <td><h5 class="card-text">Account type</h5></td>
+                                            <td><h5 class="card-text">Sex</h5></td>
                                             <td><h5 class="card-text">:</h5></td>
-                                            <td><h6 class="card-text">{{ usertype }}</h6></td>
+                                            <td><h6 class="card-text">{{ profile.sex }}</h6></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h5 class="card-text">Health conditions</h5></td>
+                                            <td><h5 class="card-text">:</h5></td>
+                                            <td><h6 class="card-text">{{ profile.conditions }}</h6></td>
                                         </tr>
                                     </table>
 

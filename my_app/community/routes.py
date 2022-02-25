@@ -69,8 +69,12 @@ def create_profile():
         if form.other.data:
             conditions += ", "+form.other.data
 
+        bio = form.bio.data
+        if not form.bio.data:
+            bio = 'No bio yet'
+
         # Create a profile for database
-        profile = Profile(photo=filename, bio=form.bio.data, sex=form.sex.data,
+        profile = Profile(photo=filename, bio=bio, sex=form.sex.data,
                           username=current_user.username, date=datetime.now(),
                           user_id=current_user.id, conditions=conditions)
         db.session.add(profile)
@@ -117,8 +121,9 @@ def update_profile():
         profile.sex = form.sex.data
         profile.conditions = conditions
         profile.date = datetime.now()
-
         db.session.commit()
+
+        flash('Profile updated!')
         return redirect(url_for('community_bp.view_profile', username=profile.username))
     return render_template('profile_create.html', form=form, username=profile.username,
                            choices=choices)
@@ -143,35 +148,6 @@ def profile_picture(filename):
     return send_from_directory(Config.UPLOADED_PHOTOS_DEST, '/user', filename=filename, as_attachment=True)
 
 
-@community_bp.route('/health_form', methods=['GET', 'POST'])
-@community_bp.route('/health_form/<username>', methods=['GET', 'POST'])
-@login_required
-def health_form(username=None):
-    if username is None:
-        username = current_user.username
-
-    choices = ['High Blood Pressure', 'History of Heart Attack',
-               'Coronary Artery Disease',
-               'Undiagnosed Chest Pain', 'Shortness of Breath', 'Irregular Heartbeart',
-               'Artificial Heart Valve', 'Peripheral Vascular Disease',
-               'Congestive Heart Failure',
-               'Diabetes', 'Kidney Disease', 'Cancer', 'Epilepsy/Seizure',
-               'Mental Illness',
-               'Emphysema', 'Asthma', 'Chronic Cough', 'Heart Murmur', 'Wheezing',
-               'Stroke', 'High Cholestrol',
-               'Thyroid Disease', 'Seasonal Allergies', 'Bleeding/Clotting Disorder',
-               'Varicose Veins',
-               'Gastrointestinal Disease', 'Liver Disease/Hepatitis', 'HIV',
-               'History of Covid']
-
-    form = HealthForm()
-
-    if request.method == 'POST' and form.validate_on_submit():
-        conditions = request.form.getlist('check')
-        flash(str(conditions))
-        return redirect(url_for('community_bp.view_profile'))
-
-    return render_template('profile_healthform.html', form=form, choices=choices)
 
 
 

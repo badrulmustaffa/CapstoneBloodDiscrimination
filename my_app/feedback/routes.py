@@ -24,10 +24,11 @@ def index(name):
 
 
 @feedback_bp.route('/post', methods=['GET', 'POST'])
+@login_required
 def post():
     form = FeedbackForm()
     if form.validate_on_submit():
-        submitfeedback = Feedback(name=form.name.data, email=form.email.data,
+        submitfeedback = Feedback(name=current_user.username, email='test@email',
                                   subject=form.subject.data,
                                   message=form.message.data,
                                   date_posted=datetime.now())
@@ -57,8 +58,13 @@ def show(post_id):
         name = current_user.username
 
     posts = Feedback.query.order_by(Feedback.date_posted.desc()).all()
-    show = Feedback.query.filter_by(id=post_id).one()
+
+    show = None
+    if post_id > 0:
+        show = Feedback.query.filter_by(id=post_id).one()
+
     replies = FeedbackReply.query.filter_by(feedback_id=post_id).order_by(FeedbackReply.date_posted.desc()).all()
+    type = current_user.type
 
     form = FeedbackReplyForm()
     if form.validate_on_submit():
@@ -72,4 +78,4 @@ def show(post_id):
         flash("Reply submitted!")
         return redirect(url_for('feedback_bp.show', post_id=post_id))
 
-    return render_template('feedback_show.html', posts=posts, show=show, replies=replies, form=form)
+    return render_template('feedback_show.html', posts=posts, usertype=type, show=show, replies=replies, form=form)

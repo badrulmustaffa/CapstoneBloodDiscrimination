@@ -11,7 +11,7 @@
                 <p>
                     {{ render_field(form.sex, class="form-control") }}
                 <div class="btn-group-toggle" data-toggle="buttons">
-                <h6>Please select if you have any of these health conditions:</h6>
+                <dt>Please select if you have any of these health conditions:
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     {% for condition in choices %}
                         <input type="checkbox" class="btn-check" id="{{ condition }}"
