@@ -97,7 +97,7 @@ class Tester(db.Model):
     kit_id = db.Column(db.Integer)
     blood_image = db.Column(db.Text)
     result = db.Column(db.Text)
-    # date_posted = db.Column(db.DateTime)
+    date_posted = db.Column(db.DateTime)
 
 
 class ShoppingCart(db.Model):

@@ -25,11 +25,12 @@ def submit():
 
         # result to be changed when algorithm is ready
         registration = Tester(kit_id=form.kit_code.data, blood_image=filename,
-                              result=1)
+                              result=1, date_posted=datetime.now())
         db.session.add(registration)
         db.session.commit()
-        return redirect(url_for('algorithm_bp.submit'))
+        flash('Your entry has been submitted')
 
+        return redirect(url_for('algorithm_bp.submit'))
     return render_template('algorithm_submit.html', entry=form)
 
 # , date_posted=datetime.now()
