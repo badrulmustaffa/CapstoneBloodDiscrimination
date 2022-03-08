@@ -13,8 +13,6 @@ class CommentForm(FlaskForm):
 
 
 class FeedbackForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
-    email = EmailField('Email', validators=[DataRequired()])
     subject = StringField('Subject', validators=[DataRequired()])
     message = TextAreaField('Message', widget=TextArea(), validators=[DataRequired()])
 

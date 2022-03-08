@@ -10,8 +10,6 @@
             <form action="{{ url_for('feedback_bp.post') }}" method="POST" novalidate>
                 {{ form.csrf_token }}
                 <p>
-                    {{ render_field(form.name, class="form-control") }}
-                    {{ render_field(form.email, class="form-control") }}
                     {{ render_field(form.subject, class="form-control") }}
                     {{ render_field(form.message, class="form-control") }}
                 </p>

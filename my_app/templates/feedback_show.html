@@ -26,7 +26,7 @@
                                             {{ post.message }}
                                         </h5>
                                     </a>
-                                    <p class="post-meta">Posted by {{ post.name }}
+                                    <p class="post-meta">Posted by {{ post.name }} ({{ usertype }})
                                         on {{ post.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
                                 </div>
                             {% else %}
@@ -54,7 +54,7 @@
                             <div style="margin-left: 10px">
                                 <h1>{{ show.subject }}</h1>
                                 <p class="subheading">Comment: {{ show.message }}</p>
-                                <p class="meta">Posted by {{ show.name }}
+                                <p class="meta">Posted by {{ show.name }} ({{ usertype }})
                                     on {{ show.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                 <div class="card" style="margin-left: 30px; background-color:lightpink">
                                     <div style="margin-left: 10px">
                                         <p>{{ reply.reply }}</p>
-                                        <p>by {{ reply.username }}
+                                        <p>by {{ reply.username }} ({{ usertype }})
                                             on {{ reply.date_posted.strftime('%B %d, %Y at %H:%M') }}</p>
                                     </div>
                                 </div>
