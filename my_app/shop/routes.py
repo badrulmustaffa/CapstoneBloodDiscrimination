@@ -19,22 +19,33 @@ def product():
         name = current_user.username
 
     form = ShoppingCartForm()
-    cart = ShoppingCart.query.filter_by(username=name).first()
+    # cart = ShoppingCart.query.filter_by(username=name).first()
+    cart = session.get('cart', {'kit':0,'machine':0})
 
-    if request.method == 'POST' and form.validate():
-        if cart:
-            cart.QuantityA = form.QuantityA.data
-            cart.QuantityB = form.QuantityB.data
 
-        else:
-            addtocart = ShoppingCart(username=name, QuantityA=form.QuantityA.data, QuantityB=form.QuantityB.data)
+    if request.method =='POST':
+        item = request.form.get('itemid')
+        cart[item] += 1
+        flash('Your shopping cart has been updated!')
+        session['cart'] = cart
+    # if request.method == 'POST' and form.validate():
+    #     session['item'] = request.form['itemA']
+    #     session['item'] = request.form['itemB']
+        # if cart:
+        #     # cart.QuantityA = form.QuantityA.data
+        #     # cart.QuantityB = form.QuantityB.data
+        #     # db.session.commit()
+        #     # flash('Updated your Shopping Cart!')
+        #
 
-            db.session.add(addtocart)
-            db.session.commit()
-            flash('Item added to your Shopping Cart!')
-            return redirect(url_for('shop_bp.product'))
+        # else:
+        #     # addtocart = ShoppingCart(username=name, QuantityA=form.QuantityA.data, QuantityB=form.QuantityB.data)
+        #     # db.session.add(addtocart)
+        #     # db.session.commit()
+        #     # flash('Item added to your Shopping Cart!')
+        #     # return redirect(url_for('shop_bp.product'))
 
-    return render_template('shop_product.html', item=cart, form=form, name=name)
+    return render_template('shop_product.html', item=cart, form=form, name=name, cart=cart)
 
 
 
@@ -45,4 +56,11 @@ def payment(name):
         name = current_user.username
 
     return render_template('shop_payment.html', name=name)
+
+@shop_bp.route('/clear')
+def clear():
+    session.pop('cart',default = None)
+    flash('shopping cart emptied')
+    return render_template('shop_product.html')
+
 

@@ -10,3 +10,4 @@ class ShoppingCartForm(FlaskForm):
     username = StringField('Name')
     QuantityA = IntegerField('Blood Test Kit')
     QuantityB = IntegerField('Blood Test Machine')
+

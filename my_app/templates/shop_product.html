@@ -3,27 +3,83 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
     <h1>SHOP</h1>
-    <br>
     <h4>Order Yours Now!</h4>
 
-
     <div class="container">
-        <br>
         <div class="card">
-        {% if item %}
-            <h5>{{ name }}'s Shopping cart</h5>
-            <h6>Blood Test Kit x{{ item.QuantityA }}</h6>
-            <h6>Blood Test Machine x{{ item.QuantityB }}</h6>
-{#            <h6> Total price is ${{ item.QuantityA*5 }}</h6>#}
+            <div class="row">
+                {% if session['cart'] %}
+                    {#                {% if session ['item'] %}#}
+                    <h5>{{ name }}'s Shopping cart</h5>
+                    {#                    {{ session['item'] }}#}
+                    {#                {% if item %}#}
+                    <div class="col">
+                                        {{ session['cart'] }}
+                        <div>
+                            {#                            <h5>{{ name }}'s Shopping cart</h5>#}
+                            {#                            <h6>Blood Test Kit x{{ item.QuantityA }}</h6>#}
+                            {#                            <h6>Blood Test Machine x{{ item.QuantityB }}</h6>#}
+                            {#            <h6> Total price is ${{ item.QuantityA*5 }}</h6>#}
+                        </div>
+                    </div>
+                    {#                    <div class="col">#}
+                    {#                        <div class="card">#}
+                    {#                            <form class="form-control form-control-sm" method="POST" action="">#}
+                    {#                                <dl>#}
+                    {#                                    {{ form.csrf_token }}#}
+                    {#                                    {{ render_field(form.QuantityA, class="form-control") }}#}
+                    {#                                    {{ render_field(form.QuantityB, class="form-control") }}#}
+                    {#                                </dl>#}
+                    {#                                <button type="submit" class="default-btn">Update Cart</button>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                {% else %}
+                    <div class="no-records">Your cart is empty</div>
+                    {#                    <form class="form-inline" method="POST" action="">#}
+                    {#                    <dl>#}
+                    {#                        {{ form.csrf_token }}#}
+                    {#                        {{ render_field(form.QuantityA, class="form-control") }}#}
+                    {#                        {{ render_field(form.QuantityB, class="form-control") }}#}
+                    {#                    </dl>#}
+                    {#                    <button type="submit" class="default-btn">Add to Cart</button>#}
+                {% endif %}
 
-        {% else %}
-            <div class="no-records">Your cart is empty</div>
-        {% endif %}
+            </div>
         </div>
     </div>
 
-    <br>
+    {#    <div class="container">#}
+    {#        <br>#}
+    {#        <div class="card">#}
+    {#            {% if item %}#}
+    {#                <h5>{{ name }}'s Shopping cart</h5>#}
+    {#                <h6>Blood Test Kit x{{ item.QuantityA }}</h6>#}
+    {#                <h6>Blood Test Machine x{{ item.QuantityB }}</h6>#}
+    {#            <h6> Total price is ${{ item.QuantityA*5 }}</h6>#}
+    {#                <div class="card" style="width: 18rem;">#}
+    {#                    <form class="form-control form-control-sm" method="POST" action="">#}
+    {#                        <dl>#}
+    {#                            {{ form.csrf_token }}#}
+    {#                            {{ render_field(form.QuantityA, class="form-control") }}#}
+    {#                            {{ render_field(form.QuantityB, class="form-control") }}#}
+    {#                        </dl>#}
+    {#                        <button type="submit" class="default-btn">Update Cart</button>#}
+    {#                </div>#}
+    {##}
+    {#            {% else %}#}
+    {#                <div class="no-records">Your cart is empty</div>#}
+    {#                <form class="form-inline" method="POST" action="">#}
+    {#                <dl>#}
+    {#                    {{ form.csrf_token }}#}
+    {#                    {{ render_field(form.QuantityA, class="form-control") }}#}
+    {#                    {{ render_field(form.QuantityB, class="form-control") }}#}
+    {#                </dl>#}
+    {#                <button type="submit" class="default-btn">Add to Cart</button>#}
+    {#            {% endif %}#}
+    {#        </div>#}
+    {#    </div>#}
 
+    <br>
     <div class="container">
         <div class="row">
 
@@ -41,13 +97,22 @@
                             <dd class="col-sm-9">
                                 <p>$5</p>
                                 <div class="add-to-cart">
-                                    <form class="form-inline" style="margin-left: 30px" method="POST" action="">
+                                    {#                                    <form class="form-inline" style="margin-left: 30px" method="POST" action="">#}
+                                    <form method="POST">
                                         <dl>
-                                            {{ form.csrf_token }}
-                                            {{ render_field(form.QuantityA, class="form-control") }}
+
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                            {#                                            <label for="itemA">amount:</label>#}
+                                            {#                                            <input type ="item" id="1" name="itemA"/>#}
+                                            <input type="hidden" name="itemid" value="kit"/>
+                                            {#                                            {% if item %}#}
+                                            {#                                            {{ form.csrf_token }}#}
+                                            {#                                            {{ render_field(form.QuantityA, class="form-control") }}#}
+                                            {#                                            <input type="hidden" name="QuantityB" value="0"#}
                                         </dl>
                                         <button type="submit" class="default-btn">Add to Cart</button>
                                     </form>
+                                    {#                                    </form>#}
                                 </div>
 
                         </dl>
@@ -73,14 +138,15 @@
                                 <div class="add-to-cart">
                                     <form class="form-inline" style="margin-left: 30px" method="POST" action="">
                                         <dl>
-                                            {{ form.csrf_token }}
-                                            {{ render_field(form.QuantityB, class="form-control") }}
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                            {#                                            <label for="itemB">amount:</label>#}
+                                            {#                                            <input type ="item" id="2" name="itemB"/>#}
+                                            <input type="hidden" name="itemid" value="machine"/>
+                                            {#                                            {{ form.csrf_token }}#}
+                                            {#                                            {{ render_field(form.QuantityB, class="form-control") }}#}
+                                            {#                                            <input type="hidden" name="QuantityA" value="0"#}
                                         </dl>
                                         <button type="submit" class="default-btn">Add to Cart</button>
-                                        {#                                    <form method="POST" action="">#}
-                                        {#                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>#}
-                                        {#                                        <input type="text" class="QuantityB" value="0" size="2"/>#}
-                                        {#                                        <input type="submit" name='action' value="Add to cart" class="default-btn"/>#}
                                     </form>
 
                         </dl>
@@ -88,6 +154,7 @@
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>

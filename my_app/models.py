@@ -101,11 +101,16 @@ class Tester(db.Model):
 
 
 class ShoppingCart(db.Model):
-    __tablename__ = 'shopping cart'
+    __tablename__ = 'shopping_cart'
     id = db.Column(db.Integer)
     username = db.Column(db.Text, nullable=False, primary_key=True)
     QuantityA = db.Column(db.Integer)
     QuantityB = db.Column(db.Integer)
+
+
+
+
+
 
 
 
