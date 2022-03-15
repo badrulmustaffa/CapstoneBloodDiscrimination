@@ -67,4 +67,7 @@ def create_app(config_classname):
     from my_app.trial.routes import trial_bp
     app.register_blueprint(trial_bp)
 
+    from my_app.machine_learning_algorithm.routes import machine_learning_algorithm_bp
+    app.register_blueprint(machine_learning_algorithm_bp)
+
     return app

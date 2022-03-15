@@ -3,3 +3,6 @@ Flask-WTF
 Flask-SQLAlchemy
 Flask-Login
 Flask-Reuploaded
+tensorflow
+keras
+scikit-image
