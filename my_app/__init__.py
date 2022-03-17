@@ -8,7 +8,8 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 csrf = CSRFProtect()
 photos = UploadSet('photos', IMAGES)
-images = UploadSet('images', IMAGES)
+images = UploadSet('images', extensions=('png', 'tif'))
+
 
 def create_app(config_classname):
     """
@@ -31,7 +32,7 @@ def create_app(config_classname):
     # CSRFProtect extension conflicted with Dash, line below exclude Dash from CSRFProtect
     # (Adapted from https://stackoverflow.com/questions/51585596/dash-callbacks-not-working-if-dash-app-is-created-and-called-from-flask)
     csrf._exempt_views.add('dash.dash.dispatch')
-    #csrf.exempt_views.add('dash.dash.dispatch')
+    # csrf.exempt_views.add('dash.dash.dispatch')
 
     with app.app_context():
         # Import User

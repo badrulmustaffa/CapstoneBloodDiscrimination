@@ -8,15 +8,18 @@ from my_app import db, images
 from keras.models import model_from_json
 
 import tensorflow
+import numpy as np
+import os
 
 algorithm_bp = Blueprint('algorithm_bp', __name__, url_prefix='/algorithm')
 
 
 # opening and store file in a variable
 
-json_file = open(url_for('algorithm', filename='model.json'),'r')
+#json_file = open(url_for('algorithm', filename='model.json'),'r')
 #json_file = open('model.json','r')
-
+model_json_path = "C:\\Users\\farha\\PycharmProjects\\CapstoneBloodDiscrimination\\my_app\\algorithm\\model.json"
+json_file = open(model_json_path, 'r')
 
 loaded_model_json = json_file.read()
 json_file.close()
@@ -26,8 +29,8 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 
 # load weights into new model
-
-loaded_model.load_weights("model.h5")
+model_h5_path = "C:\\Users\\farha\\PycharmProjects\\CapstoneBloodDiscrimination\\my_app\\algorithm\\model.h5"
+loaded_model.load_weights(model_h5_path)
 print("Loaded Model from disk")
 
 # compile and evaluate loaded model
@@ -65,11 +68,12 @@ def submit():
 
 def predict():
     imgData = request.files['blood_image']
-    x = io.imread(imgData, plugin='matplotlib')
-    x = tensorflow.image.resize(x/255,(256,256))
+    x = io.imread(imgData)
+    x = tensorflow.image.resize(x/255,(200,200))
 
     # with graph.as_default():
-    out = loaded_model.predict(x)
+    out= loaded_model.predict(np.expand_dims(x, axis = 0))
+    print(out)
     if int(round(out[0][0])) == 1:
         output = 'baseline'
     else:
