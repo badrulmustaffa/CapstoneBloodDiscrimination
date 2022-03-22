@@ -9,75 +9,42 @@
         <div class="card">
             <div class="row">
                 {% if session['cart'] %}
-                    {#                {% if session ['item'] %}#}
                     <h5>{{ name }}'s Shopping cart</h5>
-                    {#                    {{ session['item'] }}#}
-                    {#                {% if item %}#}
                     <div class="col">
-                                        {{ session['cart'] }}
-                        <div>
-                            {#                            <h5>{{ name }}'s Shopping cart</h5>#}
-                            {#                            <h6>Blood Test Kit x{{ item.QuantityA }}</h6>#}
-                            {#                            <h6>Blood Test Machine x{{ item.QuantityB }}</h6>#}
-                            {#            <h6> Total price is ${{ item.QuantityA*5 }}</h6>#}
+                        Blood test kit x{{ session['cart']['kit']}}
+                        <br>
+                        Blood test machine x{{ session['cart']['machine']}}
+                        <br>
+                        <br>
+
+
+                        <div class ='row'>
+                             <div class ='col-1'>
+                                <form action="{{ url_for("shop_bp.clear") }}">
+                                    <button type="submit" class="default-btn">Clear Cart</button>
+                                </form>
+                            </div>
+                            <div class ='col-2'>
+        {#                        <form method ="POST" >#}
+        {#                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>#}
+        {#                            <input type="hidden" name="itemid" value="checkout"/>#}
+                                <form action="{{ url_for("shop_bp.payment", cart=cart)}}">
+                                    <button type="submit" class="default-btn">Checkout</button>
+                                </form>
+                            </div>
                         </div>
+
+
                     </div>
-                    {#                    <div class="col">#}
-                    {#                        <div class="card">#}
-                    {#                            <form class="form-control form-control-sm" method="POST" action="">#}
-                    {#                                <dl>#}
-                    {#                                    {{ form.csrf_token }}#}
-                    {#                                    {{ render_field(form.QuantityA, class="form-control") }}#}
-                    {#                                    {{ render_field(form.QuantityB, class="form-control") }}#}
-                    {#                                </dl>#}
-                    {#                                <button type="submit" class="default-btn">Update Cart</button>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
                 {% else %}
                     <div class="no-records">Your cart is empty</div>
-                    {#                    <form class="form-inline" method="POST" action="">#}
-                    {#                    <dl>#}
-                    {#                        {{ form.csrf_token }}#}
-                    {#                        {{ render_field(form.QuantityA, class="form-control") }}#}
-                    {#                        {{ render_field(form.QuantityB, class="form-control") }}#}
-                    {#                    </dl>#}
-                    {#                    <button type="submit" class="default-btn">Add to Cart</button>#}
                 {% endif %}
 
             </div>
         </div>
     </div>
 
-    {#    <div class="container">#}
-    {#        <br>#}
-    {#        <div class="card">#}
-    {#            {% if item %}#}
-    {#                <h5>{{ name }}'s Shopping cart</h5>#}
-    {#                <h6>Blood Test Kit x{{ item.QuantityA }}</h6>#}
-    {#                <h6>Blood Test Machine x{{ item.QuantityB }}</h6>#}
-    {#            <h6> Total price is ${{ item.QuantityA*5 }}</h6>#}
-    {#                <div class="card" style="width: 18rem;">#}
-    {#                    <form class="form-control form-control-sm" method="POST" action="">#}
-    {#                        <dl>#}
-    {#                            {{ form.csrf_token }}#}
-    {#                            {{ render_field(form.QuantityA, class="form-control") }}#}
-    {#                            {{ render_field(form.QuantityB, class="form-control") }}#}
-    {#                        </dl>#}
-    {#                        <button type="submit" class="default-btn">Update Cart</button>#}
-    {#                </div>#}
-    {##}
-    {#            {% else %}#}
-    {#                <div class="no-records">Your cart is empty</div>#}
-    {#                <form class="form-inline" method="POST" action="">#}
-    {#                <dl>#}
-    {#                    {{ form.csrf_token }}#}
-    {#                    {{ render_field(form.QuantityA, class="form-control") }}#}
-    {#                    {{ render_field(form.QuantityB, class="form-control") }}#}
-    {#                </dl>#}
-    {#                <button type="submit" class="default-btn">Add to Cart</button>#}
-    {#            {% endif %}#}
-    {#        </div>#}
-    {#    </div>#}
+
 
     <br>
     <div class="container">
