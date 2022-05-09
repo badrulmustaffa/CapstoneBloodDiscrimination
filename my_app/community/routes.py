@@ -7,7 +7,7 @@ from datetime import datetime
 import my_app.config
 from my_app import db, photos
 from my_app.community.forms import ProfileForm
-from my_app.models import Profile, User, History
+from my_app.models import Profile, User, History, ShoppingCart, KitID
 from my_app.config import Config
 
 community_bp = Blueprint('community_bp', __name__, url_prefix='/community')
@@ -139,8 +139,10 @@ def view_profile(username=None):
     type = current_user.type
     profile = Profile.query.filter_by(username=username).one()
     history = History.query.filter_by(user_id=current_user.id).all()
+    purchases = ShoppingCart.query.filter_by(username=current_user.username).all()
+    kit_id = KitID.query.filter_by(username=current_user.username).all()
 
-    return render_template('profile_view.html', profile=profile, usertype=type, history=history)
+    return render_template('profile_view.html', profile=profile, usertype=type, history=history, purchases=purchases, kit_id=kit_id)
 
 
 @community_bp.route('/profile_picture/<filename>')

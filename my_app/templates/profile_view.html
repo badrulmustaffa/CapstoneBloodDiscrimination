@@ -83,26 +83,29 @@
                                     <div class="card-body rounded" style="background-color: lavenderblush">
                                         <table class="table table-bordered table-sm">
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Time</th>
                                                 <th>Kit ID</th>
+                                                <th>Reference number</th>
                                                 <th>Image</th>
                                                 <th>Result</th>
+                                                <th>Date & Time of completion</th>
                                             </tr>
 
-                                            {% for user_id in history %}
+                                            {% for kitnumber in kit_id %}
                                                 <tr>
                                                     <td>
-                                                        {{ user_id.time }}
+                                                        {{ kitnumber.kitID }}
                                                     </td>
                                                     <td>
-                                                        {{ user_id.mean }}
+                                                        {{ kitnumber.ref_num }}
                                                     </td>
                                                     <td>
-                                                        {{ user_id.start }}
+                                                        Pending
                                                     </td>
                                                     <td>
-                                                        {{ user_id.end }}
+                                                        -
+                                                    </td>
+                                                    <td>
+                                                        -
                                                     </td>
                                                 </tr>
                                             {% endfor %}
@@ -118,27 +121,31 @@
                                     <div class="card-body rounded" style="background-color: lavenderblush">
                                         <table class="table table-bordered table-sm">
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Time</th>
-                                                <th>Order number</th>
-                                                <th>Item</th>
+                                                <th>Date & Time of Purchase</th>
+                                                <th>Reference Number</th>
+                                                <th>Item Name</th>
+                                                <th>Item Number</th>
                                                 <th>Price</th>
                                             </tr>
 
-                                            {% for user_id in history %}
+                                            {% for purchase in purchases %}
                                                 <tr>
                                                     <td>
-                                                        {{ user_id.time }}
+                                                        {{ purchase.date_purchased.strftime('%B %d, %Y at %H:%M') }}
                                                     </td>
                                                     <td>
-                                                        {{ user_id.mean }}
+                                                        {{ purchase.ref_num }}
                                                     </td>
                                                     <td>
-                                                        {{ user_id.start }}
+                                                        Blood Sampling Kit
                                                     </td>
                                                     <td>
-                                                        {{ user_id.end }}
+                                                        {{ purchase.QuantityA }}
                                                     </td>
+                                                    <td>
+                                                        ${{ purchase.QuantityA*5 }}
+                                                    </td>
+
                                                 </tr>
                                             {% endfor %}
                                         </table>

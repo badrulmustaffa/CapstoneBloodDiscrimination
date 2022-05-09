@@ -102,15 +102,17 @@ class Tester(db.Model):
 
 class ShoppingCart(db.Model):
     __tablename__ = 'shopping_cart'
-    id = db.Column(db.Integer)
-    username = db.Column(db.Text, nullable=False, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text)
+    ref_num = db.Column(db.Text)
     QuantityA = db.Column(db.Integer)
     QuantityB = db.Column(db.Integer)
+    date_purchased = db.Column(db.DateTime)
 
 
-
-
-
-
-
-
+class KitID(db.Model):
+    __tablename__ = 'kit_ID'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text)
+    kitID = db.Column(db.Text)
+    ref_num = db.Column(db.Text)

@@ -6,7 +6,7 @@ from datetime import datetime
 
 from my_app.shop.forms import ShoppingCartForm
 from my_app import db
-from my_app.models import ShoppingCart
+from my_app.models import ShoppingCart, KitID
 
 shop_bp = Blueprint('shop_bp', __name__, url_prefix='/shop')
 
@@ -28,25 +28,6 @@ def product():
         session['cart'] = cart
 
     return render_template('shop_product.html', form=form, name=name, cart=cart)
-
-    # if request.method == 'POST' and form.validate():
-    #     session['item'] = request.form['itemA']
-    #     session['item'] = request.form['itemB']
-        # if cart:
-        #     # cart.QuantityA = form.QuantityA.data
-        #     # cart.QuantityB = form.QuantityB.data
-        #     # db.session.commit()
-        #     # flash('Updated your Shopping Cart!')
-        #
-
-        # else:
-        #     addtocart = ShoppingCart(username=name, QuantityA=form.QuantityA.data, QuantityB=form.QuantityB.data)
-        #     db.session.add(addtocart)
-        #     db.session.commit()
-        #     flash('Item added to your Shopping Cart!')
-        #     return redirect(url_for('shop_bp.product'))
-
-
 
 
 @shop_bp.route('/payment', defaults={'name': 'traveler'}, methods=['GET', 'POST'])
@@ -84,12 +65,41 @@ def checkout(name):
         session['cart'] = cart
         kitqty = session['cart']['kit']
         machqty = session['cart']['machine']
+        kitamount = kitqty
+        ID = 0
+        refnum = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))+'-'+''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
 
-        purchase = ShoppingCart(username=name, QuantityA=kitqty, QuantityB=machqty)
+        while ID < kitamount:
+            kit_ID = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+            ID = ID +1
+
+            registerID = KitID(username=name,
+                               kitID=kit_ID,
+                               ref_num=refnum)
+            db.session.add(registerID)
+            db.session.commit()
+
+        purchase = ShoppingCart(username=name,
+                                ref_num=refnum,
+                                QuantityA=kitqty,
+                                QuantityB=machqty,
+                                date_purchased=datetime.now())
+
         db.session.add(purchase)
         db.session.commit()
 
         session.pop('cart', default=None)
 
     flash('purchase confirmed!')
-    return redirect(url_for('shop_bp.product'))
+    return redirect(url_for('shop_bp.confirm', ref_num=refnum))
+
+@shop_bp.route('/gen_kitid')
+def gen_kitid():
+    # function to generate kid ID
+    result_str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))+'-'+''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+    return redirect(url_for('shop_bp.product', result_str=result_str))
+
+
+@shop_bp.route('/confirm')
+def confirm():
+    return render_template('shop_confirm.html')
