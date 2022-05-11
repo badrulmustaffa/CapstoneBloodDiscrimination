@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col">
                     <h5>Items</h5>
-                    Blood test kit x{{ session['cart']['kit']}}
+                    Express Blood Test Kit x{{ session['cart']['kit']}}
 
 {#                    <br>#}
 {#                    Blood test machine x{{ session['cart']['machine']}}#}
@@ -92,16 +92,18 @@
                 </div>
 
             </form>
-        </div>
-    </div>
-    </div>
 
 
-
-    <br>
     <form action="{{ url_for("shop_bp.checkout") }}">
         <button type="submit" class="btn btn-primary">Confirm Purchase</button>
     </form>
+    </div>
+
+    </div>
+
+
+
+
 
 
 

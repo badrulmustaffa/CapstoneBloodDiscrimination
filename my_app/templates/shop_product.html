@@ -15,14 +15,17 @@
                         <div class="row">
                             <h5>{{ name }}'s Shopping cart</h5>
                         </div>
-
+                        <div class="container">
                         <div class ="row">
-                            <div class="col">
-                                Blood test kit x{{ session['cart']['kit']}}
+                        <figure class="align-items-center">
+                            <dt class="col-sm-3">Items</dt>
+                            <dd class="col-sm-9">
+                                Express Blood Test Kit x{{ session['cart']['kit']}}
                                 <br>
         {#                        Blood test machine x{{ session['cart']['machine']}}#}
-                                <br>
-                            </div>
+                            </dd>
+                            </figure>
+                        </div>
                         </div>
 
                         <div class ='row'>
@@ -59,7 +62,7 @@
                         <br>
                         <dl class="row">
                             <dt class="col-sm-3">Item</dt>
-                            <dd class="col-sm-9">Blood Test Kit</dd>
+                            <dd class="col-sm-9">Express Blood Test Kit</dd>
 
                             <dt class="col-sm-3">Price</dt>
                             <dd class="col-sm-9">
@@ -82,35 +85,36 @@
             </div>
 
 
-{#            <div class="col">#}
-{#                <div class="card" style="width: 25rem;">#}
-{#                    <img class="card-img-top"#}
-{#                         src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}"#}
-{#                         width="300"#}
-{#                         height="300">#}
-{#                    <div class="card-body">#}
-{#                        <br>#}
-{#                        <dl class="row">#}
-{#                            <dt class="col-sm-3">Item</dt>#}
-{#                            <dd class="col-sm-9">Blood Test Machine</dd>#}
-{##}
-{#                            <dt class="col-sm-3">Price</dt>#}
-{#                            <dd class="col-sm-9">#}
-{#                                <p>$100</p>#}
-{#                                <div class="add-to-cart">#}
+            <div class="col">
+                <div class="card" style="width: 25rem;">
+                    <img class="card-img-top"
+{#                         prototype kit image from : https://ukmedi.co.uk/bd-vacutainer-3ml-edta-purple-blood-collection-tubes/?sku=367838-5&dfw_tracker=133555-450-0001&wi=%3Doff#}
+                         src="{{ url_for('static', filename='img/prototype kit.jpg') }}"
+                         width="300"
+                         height="300">
+                    <div class="card-body">
+                        <br>
+                        <dl class="row">
+                            <dt class="col-sm-3">Item</dt>
+                            <dd class="col-sm-9">Standard Blood Test Kit</dd>
+
+                            <dt class="col-sm-3">Price</dt>
+                            <dd class="col-sm-9">
+                                <p>$6.49</p>
+                                <div class="add-to-cart">
 {#                                    <form class="form-inline" style="margin-left: 30px" method="POST" action="">#}
 {#                                        <dl>#}
 {#                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>#}
 {#                                            <input type="hidden" name="itemid" value="machine"/>#}
 {#                                        </dl>#}
-{#                                        <button type="submit" class="default-btn">Add to Cart</button>#}
+                                        <button type="submit" class="default-btn" disabled>Out of Stock</button>
 {#                                    </form>#}
-{##}
-{#                        </dl>#}
-{##}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+
+                        </dl>
+
+                    </div>
+                </div>
+            </div>
 
 
         </div>
