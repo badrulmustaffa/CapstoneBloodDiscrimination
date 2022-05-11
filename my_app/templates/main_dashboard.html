@@ -1,12 +1,107 @@
 {% extends 'layout.html' %}
 {% set title = 'Credits' %}
 {% block content %}
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
 
+    <div class="card" style="width: 100%; background-color: lavender">
+        <div class="card-body">
+            <h1> Homepage </h1>
+            <div class="row">
+                <div class="container">
+                    <div class="card">
+                        <br>
+                            <figure class="text-center">
+                                <blockquote class="blockquote">
+                                    <h3>How to get your blood tested?</h3>
+                                    Follow these simple steps!
+                                    <div class="container">
+                                        <div class="container">
+                                        <img class="card-img-top" src="{{ url_for('static', filename='img/homepage image.png') }}"
+                                        width="400" height="300">
+                                        </div>
+                                    </div>
+                                </blockquote>
+                                <form action="{{ url_for("shop_bp.product") }}">
+                                    <button type="submit" class="default-btn-sm">Visit our shop</button>
+                                    </form>
+                            </figure>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="row">
+                    <div class ="col">
+{#                        <div class="card">#}
+                            <div class="card-header h4 p-2 mb-1 text-dark rounded"
+                                 style="background-color: pink"><H4>How your blood is processed</H4></div>
+
+                                <div class="card-body rounded" style="background-color: lavenderblush">
+                                Using mathematical algorithm and the image of your blood sample, we are able to process
+                                your blood within <strong>seconds</strong> with <strong>97%</strong>  accuracy!
+                                <br>
+                                <figure class="text-end">
+                                <form action="{{ url_for("main_bp.about") }}">
+                                    <button type="submit" class="default-btn-sm">Find out more</button>
+                                </form>
+                                </figure>
+                            </div>
+{#                        </div>#}
+                    </div>
+
+                    <div class ="col">
+{#                        <div class="card">#}
+                            <div class="card-header h4 p-2 mb-1 text-dark rounded"
+                                 style="background-color: pink"><H4>More questions on how our service works?</H4></div>
+
+                            <div class="card-body rounded" style="background-color: lavenderblush">
+                                visit our FAQ page where we answer common question regarding our service
+                                <div class ="row">
+                                    <figure class="text-end">
+                                    <div class ="col">
+                                        <form action="{{ url_for("main_bp.faq") }}">
+                                            <button type="submit" class="default-btn-sm">FAQ</button>
+                                        </form>
+                                    </div>
+                                    </figure>
+
+        {#                            <div class ="col">#}
+        {#                                <form action="{{ url_for("main_bp.faq") }}">#}
+        {#                                    <button type="submit" class="default-btn-sm">FAQ</button>#}
+        {#                                </form>#}
+        {#                            </div>#}
+        {##}
+        {#                            <div class ="col">#}
+        {#                                <form action="{{ url_for("main_bp.faq") }}">#}
+        {#                                    <button type="submit" class="default-btn-sm">FAQ</button>#}
+        {#                                </form>#}
+        {#                            </div>#}
+                                </div>
+                            </div>
+{#                        </div>#}
+                    </div>
+
+                    <div class ="col">
+
+                            <div class="card-header h4 p-2 mb-1 text-dark rounded"
+                                 style="background-color: pink"><h4>Recent activity</h4></div>
+                            <div class="card-body rounded" style="background-color: lavenderblush">
+                                to view recent activity such as purchases or results, please visit your profile page
+                                <div class="row">
+                                    <figure class="text-end">
+                                    <div class="col">
+                                       <form action="{{ url_for("community_bp.view_profile") }}">
+                                            <button type="submit" class="default-btn-sm">View Profile</button>
+                                       </form>
+                                    </div>
+                                    </figure>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    <div
     </div>
 {% endblock %}

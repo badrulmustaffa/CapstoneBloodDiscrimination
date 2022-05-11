@@ -4,25 +4,43 @@
 
     <!-- Main Content -->
 
-    <h1>About Algorithm</h1>
+<div class="card" style="width: 100%; background-color: lavender">
+    <div class ="card-body">
+    <h1>More on our processing method</h1>
     <br>
+        <div class="card">
+        <div class="card-body">
+            <h3>Blood processing made easy
+            <small class="text-muted"> and quick!</small>
+        </h3>
 
-    <div class="clearfix">
-  <img src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}" class="col-md-6 float-md-end mb-3 ms-md-3" alt="..." width="250" height="250">
+            <div class="clearfix">
+          <img src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}" class="col-md-6 float-md-end mb-3 ms-md-3" alt="..." width="250" height="250">
 
-  <p>
-    Text explaining about algorithm.
-  </p>
+          <p>
+              Artificial intelligence has made significant progress in closing the gap between human and computer capabilities,
+              which is why we are using mathematical algorithms to process our blood samples.
+          </p>
 
-  <p>
-    As you can see the paragraphs gracefully wrap around the floated image. Size of image can be adjusted.
-  </p>
+          <p>
+              The algorithm used for the blood testing is Convolutional Neural Network (CNN) which is a class of the deep
+              learning, most generally employed for image classification. CNN is a supervised learning where it uses large,
+              labelled datasets for training of the algorithm to predict output accurately.
+              The blood droplet images will go through two processes which are feature extraction by the convolutional layer,
+              and classification by the neural network layer before predicting an output.
+          </p>
 
-    <p>
-        The image of blood testing machine shown now should be replaced with flowchart of algorithm and changed in the future.
-  </p>
+            <p>
+                Our algorithm has managed to reach a promising accuracy of 97%.
+                Once we received your blood sample, and an image of the sample has been captured, the process of getting the
+                results will be almost instantaneous.
+            </p>
 
-</div>
+        </div>
+        </div>
+
+        </div>
+
 
     <br>
 
@@ -74,5 +92,7 @@
 
   </div>
 </div>
+    </div>
+    </div>
 
 {% endblock %}
