@@ -7,24 +7,31 @@
 
 
     <div class="card" style="width:60rem;">
+    <div class="card-body">
         <h5> Order summary</h5>
         {% if session['cart'] %}
             <div class="row">
                 <div class="col">
                     <h5>Items</h5>
                     Blood test kit x{{ session['cart']['kit']}}
-                    <br>
-                    Blood test machine x{{ session['cart']['machine']}}
+
+{#                    <br>#}
+{#                    Blood test machine x{{ session['cart']['machine']}}#}
                     <br>
                     Total price
+                    <br>
+                    Tax (20% inclusive of total price)
                 </div>
                 <div class="col">
                     <h5>Price</h5>
                     ${{ kitprice }}
-                    <br>
-                    ${{ machprice }}
+{#                    <br>#}
+{#                    ${{ machprice }}#}
                     <br>
                     ${{ totalprice }}
+                    <br>
+                    ${{ tax }}
+                    <br>
                 </div>
             </div>
             <div class ="row">
@@ -34,6 +41,7 @@
             </div>
         {% endif %}
     </div>
+    </div>
     <br>
 
 
@@ -41,6 +49,7 @@
     <br>
 
     <div class="card" style="width: 70rem;">
+    <div class="card-body">
 
         <div class="container">
 
@@ -84,7 +93,7 @@
 
             </form>
         </div>
-
+    </div>
     </div>
 
 

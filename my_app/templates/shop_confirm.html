@@ -5,12 +5,13 @@
     <br>
     <div class="container">
         <div class="card">
-            {% if refnum ==refnum %}
+            {% if refnum==refnum %}
                 <figure class="text-center">
                     <blockquote class="blockquote">
                         <h3>Thank you for your purchase!</h3>
                     </blockquote>
-                Your reference number is {{ ref_num }}. you will be able to access your kit ID(s) from your profile page.
+                Your reference number is <p><strong>{{ refnum }}</strong></p>
+                You will be able to access your kit ID(s) from your profile page.
             {% endif %}
         </div>
     </div>

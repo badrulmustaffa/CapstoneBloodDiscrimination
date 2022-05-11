@@ -7,50 +7,43 @@
 
     <div class="container">
         <div class="card">
-            <div class="row">
-                {% if session['cart'] %}
-                    <h5>{{ name }}'s Shopping cart</h5>
-                    <div class="col">
-                        Blood test kit x{{ session['cart']['kit']}}
-                        <br>
-                        Blood test machine x{{ session['cart']['machine']}}
-                        <br>
-                        <br>
+            <div class="card-body">
+                <div class="row">
+                    {% if session['cart'] %}
 
+                        <div class="row">
+                            <h5>{{ name }}'s Shopping cart</h5>
+                        </div>
+
+                        <div class ="row">
+                            <div class="col">
+                                Blood test kit x{{ session['cart']['kit']}}
+                                <br>
+        {#                        Blood test machine x{{ session['cart']['machine']}}#}
+                                <br>
+                            </div>
+                        </div>
 
                         <div class ='row'>
                              <div class ='col-1'>
                                 <form action="{{ url_for("shop_bp.clear") }}">
-                                    <button type="submit" class="default-btn">Clear Cart</button>
+                                    <button type="submit" class="default-btn-sm">ClearCart</button>
                                 </form>
                             </div>
                             <div class ='col-2'>
-        {#                        <form method ="POST" >#}
-        {#                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>#}
-        {#                            <input type="hidden" name="itemid" value="checkout"/>#}
                                 <form action="{{ url_for("shop_bp.payment", cart=cart)}}">
-                                    <button type="submit" class="default-btn">Checkout</button>
+                                    <button type="submit" class="default-btn-sm">Checkout</button>
                                 </form>
                             </div>
                         </div>
-{#                        <div class ='col-1'>#}
-{#                                <form action="{{ url_for("shop_bp.gen_kitid") }}">#}
-{#                                    <button type="submit" class="default-btn">generate id</button>#}
-{#                                </form>#}
-{#                            {{ result_str }}#}
-{#                        </div>#}
 
-
-                    </div>
-                {% else %}
-                    <div class="no-records">Your cart is empty</div>
-                {% endif %}
-
+                    {% else %}
+                        <div class="no-records">Your cart is empty</div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-
-
 
     <br>
     <div class="container">
@@ -68,24 +61,17 @@
 
                             <dt class="col-sm-3">Price</dt>
                             <dd class="col-sm-9">
-                                <p>$5</p>
+                                <p>$9.85</p>
                                 <div class="add-to-cart">
-                                    {#                                    <form class="form-inline" style="margin-left: 30px" method="POST" action="">#}
                                     <form method="POST">
                                         <dl>
 
                                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                                            {#                                            <label for="itemA">amount:</label>#}
-                                            {#                                            <input type ="item" id="1" name="itemA"/>#}
                                             <input type="hidden" name="itemid" value="kit"/>
-                                            {#                                            {% if item %}#}
-                                            {#                                            {{ form.csrf_token }}#}
-                                            {#                                            {{ render_field(form.QuantityA, class="form-control") }}#}
-                                            {#                                            <input type="hidden" name="QuantityB" value="0"#}
+
                                         </dl>
                                         <button type="submit" class="default-btn">Add to Cart</button>
                                     </form>
-                                    {#                                    </form>#}
                                 </div>
 
                         </dl>
@@ -93,40 +79,36 @@
                 </div>
             </div>
 
-            <div class="col">
-                <div class="card" style="width: 25rem;">
-                    <img class="card-img-top"
-                         src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}"
-                         width="300"
-                         height="300">
-                    <div class="card-body">
-                        <br>
-                        <dl class="row">
-                            <dt class="col-sm-3">Item</dt>
-                            <dd class="col-sm-9">Blood Test Machine</dd>
 
-                            <dt class="col-sm-3">Price</dt>
-                            <dd class="col-sm-9">
-                                <p>$100</p>
-                                <div class="add-to-cart">
-                                    <form class="form-inline" style="margin-left: 30px" method="POST" action="">
-                                        <dl>
-                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                                            {#                                            <label for="itemB">amount:</label>#}
-                                            {#                                            <input type ="item" id="2" name="itemB"/>#}
-                                            <input type="hidden" name="itemid" value="machine"/>
-                                            {#                                            {{ form.csrf_token }}#}
-                                            {#                                            {{ render_field(form.QuantityB, class="form-control") }}#}
-                                            {#                                            <input type="hidden" name="QuantityA" value="0"#}
-                                        </dl>
-                                        <button type="submit" class="default-btn">Add to Cart</button>
-                                    </form>
-
-                        </dl>
-
-                    </div>
-                </div>
-            </div>
+{#            <div class="col">#}
+{#                <div class="card" style="width: 25rem;">#}
+{#                    <img class="card-img-top"#}
+{#                         src="{{ url_for('static', filename='img/pathology-laboratory-equipments.jpg') }}"#}
+{#                         width="300"#}
+{#                         height="300">#}
+{#                    <div class="card-body">#}
+{#                        <br>#}
+{#                        <dl class="row">#}
+{#                            <dt class="col-sm-3">Item</dt>#}
+{#                            <dd class="col-sm-9">Blood Test Machine</dd>#}
+{##}
+{#                            <dt class="col-sm-3">Price</dt>#}
+{#                            <dd class="col-sm-9">#}
+{#                                <p>$100</p>#}
+{#                                <div class="add-to-cart">#}
+{#                                    <form class="form-inline" style="margin-left: 30px" method="POST" action="">#}
+{#                                        <dl>#}
+{#                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>#}
+{#                                            <input type="hidden" name="itemid" value="machine"/>#}
+{#                                        </dl>#}
+{#                                        <button type="submit" class="default-btn">Add to Cart</button>#}
+{#                                    </form>#}
+{##}
+{#                        </dl>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
 
 
         </div>
