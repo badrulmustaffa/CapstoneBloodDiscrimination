@@ -2,103 +2,112 @@
 {% set title = 'Payment' %}
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
-    <h2>Order Confirmation</h2>
-    <br>
 
 
-    <div class="card" style="width:60rem;">
-    <div class="card-body">
-        <h5> Order summary</h5>
-        {% if session['cart'] %}
-            <div class="row">
-                <div class="col">
-                    <h5>Items</h5>
-                    Express Blood Test Kit x{{ session['cart']['kit']}}
+    <div class="card" style="width: 60%; background-color: lavender; margin: auto">
+    <div class="card-body"
 
-{#                    <br>#}
-{#                    Blood test machine x{{ session['cart']['machine']}}#}
-                    <br>
-                    Total price
-                    <br>
-                    Tax (20% inclusive of total price)
-                </div>
-                <div class="col">
-                    <h5>Price</h5>
-                    ${{ kitprice }}
-{#                    <br>#}
-{#                    ${{ machprice }}#}
-                    <br>
-                    ${{ totalprice }}
-                    <br>
-                    ${{ tax }}
-                    <br>
-                </div>
-            </div>
-            <div class ="row">
-                     <form action="{{ url_for("shop_bp.product") }}">
-                        <button type="submit" class="default-btn">Edit cart</button>
-                    </form>
-            </div>
-        {% endif %}
-    </div>
-    </div>
-    <br>
+      <h1></h1>
+        <h1>Order Confirmation</h1>
 
-
-
-    <br>
-
-    <div class="card" style="width: 70rem;">
-    <div class="card-body">
-
-        <div class="container">
-
-            <h5> Select payment method</h5>
-
-            <button type="button" class="btn btn-primary">Visa</button>
-            <button type="button" class="btn btn-secondary">Mastercard</button>
-            <button type="button" class="btn btn-success">Paypal</button>
-            <button type="button" class="btn btn-danger">Klarna</button>
-        </div>
-
-        <br>
-
-        <div class="container">
-
-            <h5> Card details</h5>
-            <form>
-                <div class="col-4">
-                    <label for="exampleInputEmail1" class="form-label">Card Number</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
+        <div class="card" style="width:100%;margin: auto">
+        <div class="card-body">
+            <h5> Order summary</h5>
+            {% if session['cart'] %}
                 <div class="row">
-                    <div class="col-2">
-                        <label for="exampleInputPassword1" class="form-label">Card Holder Name</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    <div class="col">
+                        <h5>Items</h5>
+                        Express Blood Test Kit x{{ session['cart']['kit']}}
+
+    {#                    <br>#}
+    {#                    Blood test machine x{{ session['cart']['machine']}}#}
+                        <br>
+                        Total price
+                        <br>
+                        Tax (20% inclusive of total price)
                     </div>
-                    <div class="col-2">
-                        <label for="exampleInputPassword1" class="form-label">Expiry date</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    <div class="col">
+                        <h5>Price</h5>
+                        ${{ kitprice }}
+    {#                    <br>#}
+    {#                    ${{ machprice }}#}
+                        <br>
+                        ${{ totalprice }}
+                        <br>
+                        ${{ tax }}
+                        <br>
                     </div>
-                </div>
-                <div class="col-1">
-                    <label for="exampleInputPassword1" class="form-label">CVC</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
                 </div>
                 <br>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Remember card details</label>
+                <div class ="row">
+                         <form action="{{ url_for("shop_bp.product") }}">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="{{ url_for('static', filename='img/edit.png') }}"
+                                 style="width: 20px; filter: invert(1)">
+                                Edit cart
+                            </button>
+                        </form>
                 </div>
+            {% endif %}
+        </div>
+        </div>
+        <br>
 
-            </form>
 
 
-    <form action="{{ url_for("shop_bp.checkout") }}">
-        <button type="submit" class="btn btn-primary">Confirm Purchase</button>
-    </form>
-    </div>
+        <div class="card" style="width: 100%;margin: auto">
+        <div class="card-body">
 
+            <div class="container">
+
+                <h5> Select payment method</h5>
+
+                <button type="button" class="btn btn-primary">Visa</button>
+                <button type="button" class="btn btn-secondary">Mastercard</button>
+                <button type="button" class="btn btn-success">Paypal</button>
+                <button type="button" class="btn btn-danger">Klarna</button>
+            </div>
+
+            <br>
+
+            <div class="container">
+
+                <h5> Card details</h5>
+                <form>
+                    <div class="col-4">
+                        <label for="exampleInputEmail1" class="form-label">Card Number</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="exampleInputPassword1" class="form-label">Card Holder Name</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="col-2">
+                            <label for="exampleInputPassword1" class="form-label">Expiry date</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <label for="exampleInputPassword1" class="form-label">CVC</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <br>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember card details</label>
+                    </div>
+
+                </form>
+
+
+        <form action="{{ url_for("shop_bp.checkout") }}">
+            <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+        </form>
+        </div>
+
+        </div>
+        </div>
     </div>
 
 

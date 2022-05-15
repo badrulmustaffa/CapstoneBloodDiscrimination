@@ -3,9 +3,9 @@
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
 
-    <div class="card" style="width: 50%; background-color: lavender; margin: auto">
+    <div class="card" style="width: 60%; background-color: lavender; margin: auto">
         <div class="card-body">
-            <h1>SHOP</h1>
+            <h1>Shop</h1>
             <h4>Order Yours Now!</h4>
             <div class="container">
                 <div class="card">
@@ -29,15 +29,15 @@
                                     </div>
                                 </div>
 
-                                <div class='row'>
-                                    <div class='col-1'>
+                                <div class="row justify-content-start">
+                                    <div class="col-4">
                                         <form action="{{ url_for("shop_bp.clear") }}">
-                                            <button type="submit" class="default-btn-sm">ClearCart</button>
+                                            <button type="submit" class="btn btn-primary">Clear Cart</button>
                                         </form>
                                     </div>
-                                    <div class='col-2'>
+                                    <div class="col-4">
                                         <form action="{{ url_for("shop_bp.payment", cart=cart) }}">
-                                            <button type="submit" class="default-btn-sm">Checkout</button>
+                                            <button type="submit" class="btn btn-primary">Checkout</button>
                                         </form>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col">
+                    <div class="col align-self-start">
                         <div class="card" style="width: 25rem;">
                             <img class="card-img-top" src="{{ url_for('static', filename='img/blood-kit-550.png') }}"
                                  width="300" height="300">
@@ -76,7 +76,7 @@
                                                     <input type="hidden" name="itemid" value="kit"/>
 
                                                 </dl>
-                                                <button type="submit" class="default-btn">Add to Cart</button>
+                                                <button type="submit" class="btn btn-primary">Add to Cart</button>
                                             </form>
                                         </div>
 
@@ -86,7 +86,7 @@
                     </div>
 
 
-                    <div class="col">
+                    <div class="col align-self-center">
                         <div class="card" style="width: 25rem;">
                             <img class="card-img-top"
                                     {#                         prototype kit image from : https://ukmedi.co.uk/bd-vacutainer-3ml-edta-purple-blood-collection-tubes/?sku=367838-5&dfw_tracker=133555-450-0001&wi=%3Doff#}
@@ -108,7 +108,7 @@
                                             {#                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>#}
                                             {#                                            <input type="hidden" name="itemid" value="machine"/>#}
                                             {#                                        </dl>#}
-                                            <button type="submit" class="default-btn" disabled>Out of Stock</button>
+                                            <button type="submit" class="btn btn-primary" disabled>Out of Stock</button>
                                             {#                                    </form>#}
 
                                 </dl>
