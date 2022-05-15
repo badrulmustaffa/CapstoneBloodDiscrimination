@@ -149,3 +149,8 @@ def view_profile(username=None):
 @community_bp.route('/profile_picture/<filename>')
 def profile_picture(filename):
     return send_from_directory(Config.UPLOADED_PHOTOS_DEST, '/user', filename=filename, as_attachment=True)
+
+
+@community_bp.route('/blood_image/<filename>')
+def blood_image(filename):
+    return send_from_directory(Config.UPLOADED_IMAGES_DEST, '/database', filename=filename, as_attachment=True)

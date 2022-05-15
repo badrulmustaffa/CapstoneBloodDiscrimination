@@ -98,9 +98,18 @@
                                                     <td>
                                                         {{ kitnumber.ref_num }}
                                                     </td>
+                                                    {% if kitnumber.blood_image == 'Pending' %}
                                                     <td>
                                                         {{ kitnumber.blood_image }}
                                                     </td>
+                                                    {% else %}
+                                                    <td>
+                                                        {#{{ kitnumber.blood_image }}#}
+                                                        <img class="center rounded"
+                                                             src="{{ url_for('community_bp.blood_image', filename=kitnumber.blood_image) }}"
+                                                             height="100px" width="100px">
+                                                    </td>
+                                                    {% endif %}
                                                     <td>
                                                         {{ kitnumber.result }}
                                                     </td>

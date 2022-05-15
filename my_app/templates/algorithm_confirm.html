@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% set title = 'Image submitted' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <br>
+    <div class="card" style="width: 50%; background-color: lavender; margin: auto">
+        <div class="card-body">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <h3>Blood Image Processed!</h3>
+                </blockquote>
+                Kit ID: <p><strong>{{ result.kit_id }}</strong></p>
+
+                Blood image:
+                <p><img class="center rounded"
+                        src="{{ url_for('algorithm_bp.blood_image', filename=result.blood_image) }}"
+                        height="200px" width="200px"></p>
+                Result: <p><strong>{{ result.result }}</strong></p>
+                You can submit a new test image or back to home
+                <p>
+                    <a class='btn btn-primary' href="{{ url_for("algorithm_bp.submit") }}">
+                        New test</a>
+                    <a class='btn btn-primary' href="{{ url_for("main_bp.dashboard") }}">
+                        Home</a>
+                </p>
+                {#                        <form action="{{ url_for("algorithm_bp.submit") }}">#}
+                {#                            <button type="submit" class="btn btn-primary">New test</button>#}
+                {#                        </form>#}
+                {#                        <form action="{{ url_for("main_bp.dashboard") }}">#}
+                {#                            <button type="submit" class="btn btn-primary">Back to home</button>#}
+                {#                        </form>#}
+        </div>
+    </div>
+{% endblock %}

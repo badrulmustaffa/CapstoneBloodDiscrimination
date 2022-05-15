@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, send_from_directory
 from flask_login import login_required, current_user
 from my_app.algorithm.forms import TesterForm
 from my_app.models import Tester
@@ -6,6 +6,7 @@ from datetime import datetime
 from skimage import io
 from my_app import db, images
 from keras.models import model_from_json
+from my_app.config import Config
 
 import tensorflow
 import numpy as np
@@ -60,8 +61,20 @@ def submit():
 
         flash('Your entry has been submitted')
 
-        return redirect(url_for('algorithm_bp.submit'))
+        return redirect(url_for('algorithm_bp.confirm', kit_ID=form.kit_code.data))
     return render_template('algorithm_submit.html', entry=form)
+
+
+@algorithm_bp.route('/confirmation/<kit_ID>', methods=['GET', 'POST'])
+@login_required
+def confirm(kit_ID):
+    result = Tester.query.filter_by(kit_id=kit_ID).one()
+    return render_template('algorithm_confirm.html', result=result)
+
+
+@algorithm_bp.route('/blood_image/<filename>')
+def blood_image(filename):
+    return send_from_directory(Config.UPLOADED_IMAGES_DEST, '/database', filename=filename, as_attachment=True)
 
 
 def predict():
