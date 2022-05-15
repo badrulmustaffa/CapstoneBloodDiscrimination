@@ -6,7 +6,7 @@ from datetime import datetime
 
 from my_app.shop.forms import ShoppingCartForm
 from my_app import db
-from my_app.models import ShoppingCart, KitID
+from my_app.models import ShoppingCart, Tester
 
 shop_bp = Blueprint('shop_bp', __name__, url_prefix='/shop')
 
@@ -33,7 +33,6 @@ def product():
 @shop_bp.route('/payment', defaults={'name': 'traveler'}, methods=['GET', 'POST'])
 # @login_required
 def payment(name):
-
     if not current_user.is_anonymous:
         name = current_user.username
 
@@ -42,10 +41,10 @@ def payment(name):
         session['cart'] = cart
         kitqty = session['cart']['kit']
         machqty = session['cart']['machine']
-        kitprice = round(kitqty*9.85,2)
-        machprice = machqty*100
-        totalprice = round((machprice + kitprice),2)
-        tax = round(0.2*totalprice,2)
+        kitprice = round(kitqty * 9.85, 2)
+        machprice = machqty * 100
+        totalprice = round((machprice + kitprice), 2)
+        tax = round(0.2 * totalprice, 2)
 
     return render_template('shop_payment.html',
                            name=name,
@@ -75,17 +74,20 @@ def checkout(name):
         machqty = session['cart']['machine']
         kitamount = kitqty
         ID = 0
-        refnum = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))\
-                 + '-'\
+        refnum = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4)) \
+                 + '-' \
                  + ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
 
         while ID < kitamount:
             kit_ID = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
             ID = ID + 1
 
-            registerID = KitID(username=name,
-                               kitID=kit_ID,
-                               ref_num=refnum)
+            registerID = Tester(username=name,
+                                kit_id=kit_ID,
+                                ref_num=refnum,
+                                blood_image='Pending',
+                                result='-', date_posted='-'
+                                )
             db.session.add(registerID)
             db.session.commit()
 
@@ -108,8 +110,8 @@ def checkout(name):
 @shop_bp.route('/gen_kitid')
 def gen_kitid():
     # function to generate kid ID
-    result_str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))\
-                 + '-'\
+    result_str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4)) \
+                 + '-' \
                  + ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
     return redirect(url_for('shop_bp.product', result_str=result_str))
 

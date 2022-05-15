@@ -93,19 +93,28 @@
                                             {% for kitnumber in kit_id %}
                                                 <tr>
                                                     <td>
-                                                        {{ kitnumber.kitID }}
+                                                        {{ kitnumber.kit_id }}
                                                     </td>
                                                     <td>
                                                         {{ kitnumber.ref_num }}
                                                     </td>
+                                                    {% if kitnumber.blood_image == 'Pending' %}
                                                     <td>
-                                                        Pending
+                                                        {{ kitnumber.blood_image }}
+                                                    </td>
+                                                    {% else %}
+                                                    <td>
+                                                        {#{{ kitnumber.blood_image }}#}
+                                                        <img class="center rounded"
+                                                             src="{{ url_for('community_bp.blood_image', filename=kitnumber.blood_image) }}"
+                                                             height="100px" width="100px">
+                                                    </td>
+                                                    {% endif %}
+                                                    <td>
+                                                        {{ kitnumber.result }}
                                                     </td>
                                                     <td>
-                                                        -
-                                                    </td>
-                                                    <td>
-                                                        -
+                                                        {{ kitnumber.date_posted }}
                                                     </td>
                                                 </tr>
                                             {% endfor %}

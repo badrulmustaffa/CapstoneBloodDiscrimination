@@ -7,7 +7,7 @@ from datetime import datetime
 import my_app.config
 from my_app import db, photos
 from my_app.community.forms import ProfileForm
-from my_app.models import Profile, User, History, ShoppingCart, KitID
+from my_app.models import Profile, User, History, ShoppingCart, Tester
 from my_app.config import Config
 
 community_bp = Blueprint('community_bp', __name__, url_prefix='/community')
@@ -67,7 +67,7 @@ def create_profile():
         conditions = ', '.join([str(item) for item in request.form.getlist('check')])
 
         if form.other.data:
-            conditions += ", "+form.other.data
+            conditions += ", " + form.other.data
 
         bio = form.bio.data
         if not form.bio.data:
@@ -113,7 +113,7 @@ def update_profile():
 
         conditions = ', '.join([str(item) for item in request.form.getlist('check')])
         if form.other.data:
-            conditions += ", "+form.other.data
+            conditions += ", " + form.other.data
 
         # Update other detail
         profile.bio = form.bio.data
@@ -140,9 +140,10 @@ def view_profile(username=None):
     profile = Profile.query.filter_by(username=username).one()
     history = History.query.filter_by(user_id=current_user.id).all()
     purchases = ShoppingCart.query.filter_by(username=current_user.username).all()
-    kit_id = KitID.query.filter_by(username=current_user.username).all()
+    kit_id = Tester.query.filter_by(username=current_user.username).all()
 
-    return render_template('profile_view.html', profile=profile, usertype=type, history=history, purchases=purchases, kit_id=kit_id)
+    return render_template('profile_view.html', profile=profile, usertype=type, history=history, purchases=purchases,
+                           kit_id=kit_id)
 
 
 @community_bp.route('/profile_picture/<filename>')
@@ -150,6 +151,6 @@ def profile_picture(filename):
     return send_from_directory(Config.UPLOADED_PHOTOS_DEST, '/user', filename=filename, as_attachment=True)
 
 
-
-
-
+@community_bp.route('/blood_image/<filename>')
+def blood_image(filename):
+    return send_from_directory(Config.UPLOADED_IMAGES_DEST, '/database', filename=filename, as_attachment=True)
