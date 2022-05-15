@@ -93,19 +93,19 @@
                                             {% for kitnumber in kit_id %}
                                                 <tr>
                                                     <td>
-                                                        {{ kitnumber.kitID }}
+                                                        {{ kitnumber.kit_id }}
                                                     </td>
                                                     <td>
                                                         {{ kitnumber.ref_num }}
                                                     </td>
                                                     <td>
-                                                        Pending
+                                                        {{ kitnumber.blood_image }}
                                                     </td>
                                                     <td>
-                                                        -
+                                                        {{ kitnumber.result }}
                                                     </td>
                                                     <td>
-                                                        -
+                                                        {{ kitnumber.date_posted }}
                                                     </td>
                                                 </tr>
                                             {% endfor %}

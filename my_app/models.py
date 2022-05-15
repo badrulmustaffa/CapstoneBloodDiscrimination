@@ -91,13 +91,13 @@ class Trial(db.Model):
     date_posted = db.Column(db.DateTime)
 
 
-class Tester(db.Model):
-    __tablename__ = "tester"
-    id = db.Column(db.Integer, primary_key=True)
-    kit_id = db.Column(db.Integer)
-    blood_image = db.Column(db.Text)
-    result = db.Column(db.Text)
-    date_posted = db.Column(db.DateTime)
+# class Tester(db.Model):
+#     __tablename__ = "tester"
+#     id = db.Column(db.Integer, primary_key=True)
+#     kit_id = db.Column(db.Integer)
+#     blood_image = db.Column(db.Text)
+#     result = db.Column(db.Text)
+#     date_posted = db.Column(db.DateTime)
 
 
 class ShoppingCart(db.Model):
@@ -110,9 +110,19 @@ class ShoppingCart(db.Model):
     date_purchased = db.Column(db.DateTime)
 
 
-class KitID(db.Model):
-    __tablename__ = 'kit_ID'
+# class KitID(db.Model):
+#     __tablename__ = 'kit_ID'
+#     id = db.Column(db.Integer, primary_key=True)
+#     username = db.Column(db.Text)
+#     kitID = db.Column(db.Text)
+#     ref_num = db.Column(db.Text)
+
+class Tester(db.Model):
+    __tablename__ = "tester"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Text)
-    kitID = db.Column(db.Text)
     ref_num = db.Column(db.Text)
+    kit_id = db.Column(db.Text)
+    blood_image = db.Column(db.Text)
+    result = db.Column(db.Text)
+    date_posted = db.Column(db.Text)

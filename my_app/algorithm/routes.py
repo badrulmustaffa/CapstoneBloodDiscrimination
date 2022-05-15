@@ -13,11 +13,10 @@ import os
 
 algorithm_bp = Blueprint('algorithm_bp', __name__, url_prefix='/algorithm')
 
-
 # opening and store file in a variable
 
-#json_file = open(url_for('algorithm', filename='model.json'),'r')
-#json_file = open('model.json','r')
+# json_file = open(url_for('algorithm', filename='model.json'),'r')
+# json_file = open('model.json','r')
 model_json_path = "C:\\Users\\badru\\PycharmProjects\\CapstoneBloodDiscrimination\\my_app\\algorithm\\model.json"
 json_file = open(model_json_path, 'r')
 
@@ -35,9 +34,7 @@ print("Loaded Model from disk")
 
 # compile and evaluate loaded model
 
-loaded_model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
-
-
+loaded_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 
 @algorithm_bp.route('/tester', methods=['GET', 'POST'])
@@ -51,15 +48,16 @@ def submit():
         if 'blood_image' in request.files:
 
             if request.files['blood_image'].filename != '':
-
                 filename = images.save(request.files['blood_image'])
 
         output = predict()
         # result to be changed when algorithm is ready
-        registration = Tester(kit_id=form.kit_code.data, blood_image=filename,
-                              result=output, date_posted=datetime.now())
-        db.session.add(registration)
+        registration = Tester.query.filter_by(kit_id=form.kit_code.data).one()
+        registration.blood_image = filename
+        registration.result = output
+        registration.date_posted = datetime.now()
         db.session.commit()
+
         flash('Your entry has been submitted')
 
         return redirect(url_for('algorithm_bp.submit'))
@@ -69,10 +67,10 @@ def submit():
 def predict():
     imgData = request.files['blood_image']
     x = io.imread(imgData)
-    x = tensorflow.image.resize(x/255,(200,200))
+    x = tensorflow.image.resize(x / 255, (200, 200))
 
     # with graph.as_default():
-    out= loaded_model.predict(np.expand_dims(x, axis = 0))
+    out = loaded_model.predict(np.expand_dims(x, axis=0))
     print(out)
     if int(round(out[0][0])) == 1:
         output = 'baseline'
