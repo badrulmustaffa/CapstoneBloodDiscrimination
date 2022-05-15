@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% set title = 'Credits' %}
+{% set title = 'Home' %}
 {% block content %}
 
     <div class="card" style="width: 100%; background-color: lavender">
@@ -21,7 +21,7 @@
                                     </div>
                                 </blockquote>
                                 <form action="{{ url_for("shop_bp.product") }}">
-                                    <button type="submit" class="default-btn-sm">Visit our shop</button>
+                                    <button type="submit" class="btn btn-info">Visit our shop</button>
                                     </form>
                             </figure>
                     </div>
@@ -33,7 +33,7 @@
                     <div class ="col">
 {#                        <div class="card">#}
                             <div class="card-header h4 p-2 mb-1 text-dark rounded"
-                                 style="background-color: pink"><H4>How your blood is processed</H4></div>
+                                 style="background-color: pink"><H4>How your blood is processed?</H4></div>
 
                                 <div class="card-body rounded" style="background-color: lavenderblush">
                                 Using mathematical algorithm and the image of your blood sample, we are able to process
@@ -41,7 +41,7 @@
                                 <br>
                                 <figure class="text-end">
                                 <form action="{{ url_for("main_bp.about") }}">
-                                    <button type="submit" class="default-btn-sm">Find out more</button>
+                                    <button type="submit" class="btn btn-info">Find out more</button>
                                 </form>
                                 </figure>
                             </div>
@@ -54,12 +54,12 @@
                                  style="background-color: pink"><H4>More questions on how our service works?</H4></div>
 
                             <div class="card-body rounded" style="background-color: lavenderblush">
-                                visit our FAQ page where we answer common question regarding our service
+                                Visit our FAQ page where we answer common question regarding our service
                                 <div class ="row">
                                     <figure class="text-end">
                                     <div class ="col">
                                         <form action="{{ url_for("main_bp.faq") }}">
-                                            <button type="submit" class="default-btn-sm">FAQ</button>
+                                            <button type="submit" class="btn btn-info">FAQ</button>
                                         </form>
                                     </div>
                                     </figure>
@@ -85,12 +85,12 @@
                             <div class="card-header h4 p-2 mb-1 text-dark rounded"
                                  style="background-color: pink"><h4>Recent activity</h4></div>
                             <div class="card-body rounded" style="background-color: lavenderblush">
-                                to view recent activity such as purchases or results, please visit your profile page
+                                To view recent activity such as purchases or results, please visit your profile page
                                 <div class="row">
                                     <figure class="text-end">
                                     <div class="col">
                                        <form action="{{ url_for("community_bp.view_profile") }}">
-                                            <button type="submit" class="default-btn-sm">View Profile</button>
+                                            <button type="submit" class="btn btn-info">View Profile</button>
                                        </form>
                                     </div>
                                     </figure>

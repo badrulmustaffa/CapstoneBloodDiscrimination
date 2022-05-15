@@ -13,14 +13,7 @@ main_bp = Blueprint('main_bp', __name__)
 @main_bp.route('/<name>')
 @login_required
 def index(name):
-    if not current_user.is_anonymous:
-        name = current_user.username
-
-    return render_template('index.html',
-                           title='Homepage',
-                           message='This page is still empty',
-                           message2='Hi Jack',
-                           name=name)
+    return redirect(url_for('main_bp.dashboard'))
 
 
 @main_bp.route('/dashboard')
