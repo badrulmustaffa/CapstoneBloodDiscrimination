@@ -7,6 +7,7 @@ from skimage import io
 from my_app import db, images
 from keras.models import model_from_json
 from my_app.config import Config
+from pathlib import Path
 
 import tensorflow
 import numpy as np
@@ -18,9 +19,10 @@ algorithm_bp = Blueprint('algorithm_bp', __name__, url_prefix='/algorithm')
 
 # json_file = open(url_for('algorithm', filename='model.json'),'r')
 # json_file = open('model.json','r')
-model_json_path = "C:\\Users\\hafiz\\PycharmProjects\\CapstoneBloodDiscrimination\\my_app\\algorithm\\model.json"
+# model_json_path = url_for('algorithm', filename='model.json')
+# model_json_path = "C:\\Users\\hafiz\\PycharmProjects\\CapstoneBloodDiscrimination\\my_app\\algorithm\\model.json"
+model_json_path = Path(__file__).parent.parent.joinpath("algorithm").joinpath("model.json")
 json_file = open(model_json_path, 'r')
-
 loaded_model_json = json_file.read()
 json_file.close()
 
@@ -29,7 +31,9 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 
 # load weights into new model
-model_h5_path = "C:\\Users\\hafiz\\PycharmProjects\\CapstoneBloodDiscrimination\\my_app\\algorithm\\model.h5"
+# model_h5_path = "my_app/algorithm/model.h5"
+# model_h5_path = "C:\\Users\\badru\\PycharmProjects\\CapstoneBloodDiscrimination\\my_app\\algorithm\\model.h5"
+model_h5_path = Path(__file__).parent.parent.joinpath("algorithm").joinpath("model.h5")
 loaded_model.load_weights(model_h5_path)
 print("Loaded Model from disk")
 
