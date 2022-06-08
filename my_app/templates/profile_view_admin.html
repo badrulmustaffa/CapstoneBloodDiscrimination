@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% set title = 'Profile Display' %}
+{% set title = 'Admin Profile' %}
 {% from "_formhelpers.html" import render_field %}
 {% block content %}
 
@@ -66,31 +66,26 @@
                                             <td><h5 class="card-text">:</h5></td>
                                             <td><h6 class="card-text">{{ profile.sex }}</h6></td>
                                         </tr>
-                                        <tr>
-                                            <td><h5 class="card-text">Health conditions</h5></td>
-                                            <td><h5 class="card-text">:</h5></td>
-                                            <td><h6 class="card-text">{{ profile.conditions }}</h6></td>
-                                        </tr>
                                     </table>
 
                                 </div>
                                 <br>
 
                                 <div>
-                                    <div class="h4 p-3 mb-2 text-dark rounded" style="background-color: pink">Test
-                                        History
+                                    <div class="h4 p-3 mb-2 text-dark rounded" style="background-color: pink">
+                                        Pending Test
                                     </div>
                                     <div class="card-body rounded" style="background-color: lavenderblush">
                                         <table class="table table-bordered table-sm">
                                             <tr>
                                                 <th>Kit ID</th>
                                                 <th>Order Reference number</th>
-                                                <th>Image</th>
-                                                <th>Result</th>
-                                                <th>Date & Time of completion</th>
+                                                <th>User</th>
+                                                <th>Date & Time of purchase</th>
+                                                <th>Action</th>
                                             </tr>
 
-                                            {% for kitnumber in kit_id %}
+                                            {% for kitnumber in pending %}
                                                 <tr>
                                                     <td>
                                                         {{ kitnumber.kit_id }}
@@ -98,21 +93,8 @@
                                                     <td>
                                                         {{ kitnumber.ref_num }}
                                                     </td>
-                                                    {% if kitnumber.blood_image == 'Pending' %}
-                                                        <td>
-                                                            {{ kitnumber.blood_image }}
-                                                        </td>
-                                                    {% else %}
-                                                        <td>
-                                                            {#{{ kitnumber.blood_image }}#}
-                                                            <img class="rounded"
-                                                                 src="{{ url_for('community_bp.blood_image', filename=kitnumber.blood_image) }}"
-                                                                 height="100px" width="100px"
-                                                                 style="display: block;margin: auto">
-                                                        </td>
-                                                    {% endif %}
                                                     <td>
-                                                        {{ kitnumber.result }}
+                                                        {{ profile.username }}
                                                     </td>
                                                     <td>
                                                         {{ kitnumber.date_posted }}
@@ -124,44 +106,43 @@
                                 </div>
                                 <br>
 
-                                <div>
-                                    <div class="h4 p-3 mb-2 text-dark rounded" style="background-color: pink">
-                                        Purchase history
-                                    </div>
-                                    <div class="card-body rounded" style="background-color: lavenderblush">
-                                        <table class="table table-bordered table-sm">
-                                            <tr>
-                                                <th>Date & Time of Purchase</th>
-                                                <th>Reference Number</th>
-                                                <th>Item Name</th>
-                                                <th>Amount</th>
-                                                <th>Price</th>
-                                            </tr>
-
-                                            {% for purchase in purchases %}
-                                                <tr>
-                                                    <td>
-                                                        {{ purchase.date_purchased.strftime('%B %d, %Y at %H:%M') }}
-                                                    </td>
-                                                    <td>
-                                                        {{ purchase.ref_num }}
-                                                    </td>
-                                                    <td>
-                                                        Blood Sampling Kit
-                                                    </td>
-                                                    <td>
-                                                        {{ purchase.QuantityA }}
-                                                    </td>
-                                                    <td>
-                                                        ${{ purchase.QuantityA*9.85 }}
-                                                    </td>
-
-                                                </tr>
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-
-
+                                {#                                <div>#}
+                                {#                                    <div class="h4 p-3 mb-2 text-dark rounded" style="background-color: pink">#}
+                                {#                                        Purchase history#}
+                                {#                                    </div>#}
+                                {#                                    <div class="card-body rounded" style="background-color: lavenderblush">#}
+                                {#                                        <table class="table table-bordered table-sm">#}
+                                {#                                            <tr>#}
+                                {#                                                <th>Date & Time of Purchase</th>#}
+                                {#                                                <th>Reference Number</th>#}
+                                {#                                                <th>Item Name</th>#}
+                                {#                                                <th>Amount</th>#}
+                                {#                                                <th>Price</th>#}
+                                {#                                            </tr>#}
+                                {##}
+                                {#                                            {% for purchase in purchases %}#}
+                                {#                                                <tr>#}
+                                {#                                                    <td>#}
+                                {#                                                        {{ purchase.date_purchased.strftime('%B %d, %Y at %H:%M') }}#}
+                                {#                                                    </td>#}
+                                {#                                                    <td>#}
+                                {#                                                        {{ purchase.ref_num }}#}
+                                {#                                                    </td>#}
+                                {#                                                    <td>#}
+                                {#                                                        Blood Sampling Kit#}
+                                {#                                                    </td>#}
+                                {#                                                    <td>#}
+                                {#                                                        {{ purchase.QuantityA }}#}
+                                {#                                                    </td>#}
+                                {#                                                    <td>#}
+                                {#                                                        ${{ purchase.QuantityA*9.85 }}#}
+                                {#                                                    </td>#}
+                                {##}
+                                {#                                                </tr>#}
+                                {#                                            {% endfor %}#}
+                                {#                                        </table>#}
+                                {#                                    </div>#}
+                                {#                            #}
                             </td>
                         </tr>
 

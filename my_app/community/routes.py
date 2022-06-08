@@ -146,6 +146,23 @@ def view_profile(username=None):
                            kit_id=kit_id)
 
 
+@community_bp.route('/admin_profile', methods=['GET', 'POST'])
+@community_bp.route('/admin_profile/<username>', methods=['POST', 'GET'])
+@login_required
+def admin_profile(username=None):
+    if username is None:
+        username = current_user.username
+
+    type = current_user.type
+    profile = Profile.query.filter_by(username=username).one()
+    history = History.query.filter_by(user_id=current_user.id).all()
+    purchases = ShoppingCart.query.filter_by(username=current_user.username).all()
+    pending = Tester.query.filter_by(username='Pending').all()
+
+    return render_template('profile_view_admin.html', profile=profile, usertype=type, history=history, purchases=purchases,
+                           pending=pending)
+
+
 @community_bp.route('/profile_picture/<filename>')
 def profile_picture(filename):
     return send_from_directory(Config.UPLOADED_PHOTOS_DEST, '/user', filename=filename, as_attachment=True)

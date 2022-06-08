@@ -45,9 +45,11 @@
                     <a class="nav-link" href="{{ url_for("shop_bp.product") }}">Product</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for("algorithm_bp.submit") }}">Tester</a>
-                </li>
+                {% if current_user.type == 'Admin' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for("algorithm_bp.submit") }}">Tester</a>
+                    </li>
+                {% endif %}
 
                 {% if current_user.is_anonymous %}
                     <li class="nav-item">

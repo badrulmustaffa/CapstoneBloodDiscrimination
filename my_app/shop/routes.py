@@ -12,6 +12,7 @@ shop_bp = Blueprint('shop_bp', __name__, url_prefix='/shop')
 
 
 @shop_bp.route('/product', methods=['GET', 'POST'])
+@login_required
 # @login_required
 def product():
     if not current_user.is_anonymous:
@@ -31,7 +32,7 @@ def product():
 
 
 @shop_bp.route('/payment', defaults={'name': 'traveler'}, methods=['GET', 'POST'])
-# @login_required
+@login_required
 def payment(name):
     if not current_user.is_anonymous:
         name = current_user.username
@@ -56,6 +57,7 @@ def payment(name):
 
 
 @shop_bp.route('/clear')
+@login_required
 def clear():
     session.pop('cart', default=None)
     flash('Shopping cart emptied!')
@@ -63,6 +65,7 @@ def clear():
 
 
 @shop_bp.route('/checkout', defaults={'name': 'traveler'})
+@login_required
 def checkout(name):
     if not current_user.is_anonymous:
         name = current_user.username
@@ -108,6 +111,7 @@ def checkout(name):
 
 
 @shop_bp.route('/gen_kitid')
+@login_required
 def gen_kitid():
     # function to generate kid ID
     result_str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4)) \
@@ -117,6 +121,7 @@ def gen_kitid():
 
 
 @shop_bp.route('/confirm')
+@login_required
 def confirm():
     # refnum = session.get('refnum')
     # reference = ShoppingCart.query.filter_by(ref_num=refnum).all()
