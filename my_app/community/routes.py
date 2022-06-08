@@ -29,7 +29,11 @@ def index(name):
 def profile():
     profile = Profile.query.join(User).filter(User.id == current_user.id).first()
     if profile:
-        return redirect(url_for('community_bp.view_profile',
+        if current_user.type == 'Admin':
+            return redirect(url_for('community_bp.admin_profile',
+                                    username=current_user.username))
+        else:
+            return redirect(url_for('community_bp.view_profile',
                                 username=current_user.username))
     else:
         flash("No profile found. Please create a new one")
@@ -157,7 +161,7 @@ def admin_profile(username=None):
     profile = Profile.query.filter_by(username=username).one()
     history = History.query.filter_by(user_id=current_user.id).all()
     purchases = ShoppingCart.query.filter_by(username=current_user.username).all()
-    pending = Tester.query.filter_by(username='Pending').all()
+    pending = Tester.query.filter_by(blood_image='Pending').all()
 
     return render_template('profile_view_admin.html', profile=profile, usertype=type, history=history, purchases=purchases,
                            pending=pending)

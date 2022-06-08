@@ -36,8 +36,9 @@ loaded_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc
 
 
 @algorithm_bp.route('/tester', methods=['GET', 'POST'])
+@algorithm_bp.route('/tester/<kit_ID>', methods=['GET', 'POST'])
 @login_required
-def submit():
+def submit(kit_ID=None):
     form = TesterForm()
     if request.method == 'POST' and form.validate_on_submit():
         filename = 'default.png'
@@ -59,7 +60,7 @@ def submit():
         registration = Tester.query.filter_by(kit_id=form.kit_code.data).one()
         registration.blood_image = filename
         registration.result = output
-        registration.date_posted = datetime.now()
+        registration.date_posted = datetime.now().strftime('%B %d, %Y at %H:%M')
         db.session.commit()
 
         flash('Your entry has been submitted')

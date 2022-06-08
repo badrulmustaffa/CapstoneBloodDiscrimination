@@ -99,6 +99,16 @@
                                                     <td>
                                                         {{ kitnumber.date_posted }}
                                                     </td>
+                                                    <td>
+                                                        <form style="margin: auto"
+                                                              action="{{ url_for("algorithm_bp.submit", kit_ID=kitnumber.kit_id) }}">
+                                                            <button type="submit" class="center btn btn-primary">
+                                                                Test
+                                                            </button>
+                                                        </form>
+                                                    </td>
+
+
                                                 </tr>
                                             {% endfor %}
                                         </table>
